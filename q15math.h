@@ -6,9 +6,12 @@
 typedef int16_t q15_t
 typedef uint16_t theta
 
-/*
 double q15_to_dbl(q15_t num);
 float q15_to_float(q15_t num);
+int16_t q15_to_int(q15_t num);
+
+/* TODO:
+
 int16_t q15_to_int(q15_t num);
 q15_t q15_from_dbl(double num);
 q15_t q15_from_float(float num);
