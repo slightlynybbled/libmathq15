@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 typedef int16_t q15_t
-typedef uint16_t theta
+typedef uint16_t q16angle_t
 
 double q15_to_dbl(q15_t num);
 float q15_to_float(q15_t num);
@@ -14,19 +14,15 @@ q15_t q15_from_float(float num);
 q15_t q15_from_int(int num);
 
 /* TODO:
-
-q15_t q15_from_float(float num);
-q15_t q15_from_int(int num);
-
-q15_t q15_acos(q15_t num);
-q15_t q15_asin(q15_t num);
-q15_t q15_atan(q15_t num);
-q15_t q15_atan2(q15_t num);
-q15_t q15_cos(q15_t num);
-q15_t q15_exp(q15_t num);
-q15_t q15_sin(q15_t num);
+q16angle_t q15_acos(q15_t num);
+q16angle_t q15_asin(q15_t num);
+q16angle_t q15_atan(q15_t num);
+q16angle_t q15_atan2(q15_t num);
+q15_t q15_cos(q16angle_t theta);
+q15_t q15_exp(q16angle_t theta);
+q15_t q15_sin(q16angle_t theta);
 q15_t q15_sqrt(q15_t num);
-q15_t q15_tan(q15_t num);
+q15_t q15_tan(q16angle_t theta);
 q15_t q15_mul(q15_t multiplicand, q15_t multiplier);
 q15_t q15_div(q15_t dividend, q15_t divisor);
 q15_t q15_add(q15_t addend, q15_t adder);
