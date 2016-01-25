@@ -18,3 +18,42 @@ int16_t q15_to_int(q15_t num){
     
     return value;
 }
+
+q15_t q15_from_dbl(double num){
+    q15_t value;
+    
+    if(num > 0.99997)
+        value = 32767;
+    else if(num < -1.0)
+        value = -32768;
+    else{
+        value = (q15_t)(num * 32768.0);
+    }
+    
+    return value
+}
+
+q15_t q15_from_float(float num){
+    q15_t value;
+    
+    if(num > 0.99997)
+        value = 32767;
+    else if(num < -1.0)
+        value = -32768;
+    else{
+        value = (q15_t)(num * 32768.0);
+    }
+    
+    return value
+}
+
+q15_t q15_from_int(int num){
+    q15_t value = 0;
+    
+    if(num > 0)
+        value = 32767;
+    else if(num < 0)
+        value = -32768;
+    
+    return value;
+}
