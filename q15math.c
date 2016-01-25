@@ -6,7 +6,16 @@
                             23169, 25329, 27244, 28897, 30272, 31356, 32137, 32609};
     const int SINE_TABLE_ENTRIES = 16;
     const int SINE_TABLE_SHIFT = 12;
+    
+#elif defined(SINE_TABLE_5BIT)
 
+    const q15_t sine_table[] = {0, 1607, 3211, 4807, 6392, 7961, 9511, 11038,
+                            12539, 14009, 15446, 16845, 18204, 19519, 20787, 22004,
+                            23169, 24278, 25329, 26318, 27244, 28105, 28897, 29621,
+                            30272, 30851, 31356, 31785, 32137, 32412, 32609, 32727};
+    const int SINE_TABLE_ENTRIES = 32;
+    const int SINE_TABLE_SHIFT = 11;
+    
 #elif defined(SINE_TABLE_6BIT)
 
     const q15_t sine_table[] = {  0, 804, 1607, 2410, 3211, 4011, 4807, 5601,
@@ -60,8 +69,9 @@
                         
 #endif
 
-/***************** function declarations *****************/ 
+/***************** local function declarations *****************/ 
 q15_t q15_sin90(q16angle_t theta);
+q15_t q15_fast_sin90(q16angle_t theta)
 
 /***************** function implementations *****************/ 
 double q15_to_dbl(q15_t num){
@@ -180,14 +190,35 @@ q15_t q15_sin90(q16angle_t theta){
     tempTheta += 1;
     
     if(tempTheta == SINE_TABLE_ENTRIES){
-        table_value1 = 32767;
+        table_value1 = 32767;   // 90 degree value
     }else{
         table_value1 = sine_table[tempTheta]
     }
     
     /* TODO: interpolate between the two values based on the lower bits of theta */
+    uint16_t mask = 0;
+    for(int i = 0; i < SINE_TABLE_SHIFT; i++){
+        mask += 1;
+        mask = mask << 1;
+    }
     
-    
+    /* use the mask to get the low-order bits and store in tempTheta*/
+    tempTheta = theta & mask;
 
+    /* tempTheta will be very small, so it is appropriate to perform the division */
+    q15_t percent = q15_div((q15_t)tempTheta, (q15_t)mask);
+    q15_t offset = q15_mpy(percent, (table_value1 - table_value0));
+    
+    // standard addition is 'safe' in this instance b/c these values are guaranteed to be small
+    return offset + table_value0;
 }
 
+/* a helper function for the sin that only works between 0 and 89.99 degrees (0 to 16383) 
+ *  the fast version only does the lookup and does not interpolate */
+q15_t q15_fast_sin90(q16angle_t theta){
+    q15_t tempTheta, table_value;
+    
+    /* look up the 4-bit values surrounding theta and store in table_value0 and table_value1 */
+    tempTheta = theta >> SINE_TABLE_SHIFT;
+    return sine_table[tempTheta];
+}
