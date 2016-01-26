@@ -1,5 +1,10 @@
 #include "q15math.h"
 
+/***************** defines *****************/
+#define NINETY_DEG  16384
+#define ONE_EIGHTY_DEG  32768
+#define TWO_SEVENTY_DEG 49152
+
 /***************** variable declarations *****************/ 
 #if defined(SINE_TABLE_4BIT)
     const q15_t sine_table[] = {  0, 3211, 6392, 9511, 12539, 15446, 18204, 20787,
@@ -200,6 +205,29 @@ q15_t q15_abs(q15_t num){
     return value;
 }
 
+q15_t q15_sin(q16angle_t theta){
+    q15_t value;
+    
+    if(theta < NINETY_DEG){
+        /* for the first 89.9 deg, use the sin90 function directly  */
+        value = q15_sin90(theta);
+    }else if(theta < ONE_EIGHTY_DEG){
+        /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
+        uint16_t offset = (uint16_t)theta - NINETY_DEG;
+        value = q15_sin90(NINETY_DEG - offset);
+    }else if(theta < TWO_SEVENTY_DEG){
+        /* for 180 through 269.9, negative of the 90 degree calculation */
+        uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
+        value = -q15_sin90(offset);
+    }else{
+        /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
+        uint16_t offset = (uint16_t)theta - TWO_SEVENTY_DEG;
+        value = -q15_sin90(NINETY_DEG - offset);
+    }
+    
+    return value;
+}
+
 /* a helper function for the sin that only works between 0 and 89.99 degrees (0 to 16383) */
 q15_t q15_sin90(q16angle_t theta){
     q15_t tempTheta, table_value0, table_value1;
@@ -232,6 +260,29 @@ q15_t q15_sin90(q16angle_t theta){
     
     // standard addition is 'safe' in this instance b/c these values are guaranteed to be small
     return offset + table_value0;
+}
+
+q15_t q15_fast_sin(q16angle_t theta){
+    q15_t value;
+    
+    if(theta < NINETY_DEG){
+        /* for the first 89.9 deg, use the sin90 function directly  */
+        value = q15_fast_sin90(theta);
+    }else if(theta < ONE_EIGHTY_DEG){
+        /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
+        uint16_t offset = (uint16_t)theta - NINETY_DEG;
+        value = q15_fast_sin90(NINETY_DEG - offset);
+    }else if(theta < TWO_SEVENTY_DEG){
+        /* for 180 through 269.9, negative of the 90 degree calculation */
+        uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
+        value = -q15_fast_sin90(offset);
+    }else{
+        /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
+        uint16_t offset = (uint16_t)theta - TWO_SEVENTY_DEG;
+        value = -q15_fast_sin90(NINETY_DEG - offset);
+    }
+    
+    return value;
 }
 
 /* a helper function for the sin that only works between 0 and 89.99 degrees (0 to 16383) 
