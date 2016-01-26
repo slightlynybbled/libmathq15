@@ -310,3 +310,48 @@ q15_t q15_fast_cos(q16angle_t theta){
     return value;
 }
 
+/* since q15_t can only represent numbers between -1.0 and +0.99997, this may be a good time to
+ * either use a fixed-point format with a higher range or a a floating-point format */
+q15_t q15_tan(q16angle_t theta){
+    q15_t sinValue = q15_sin(theta);
+    q15_t cosValue = q15_cos(theta);
+    
+    /* tan(theta) = sin(theta)/cos(theta) BUT we can only
+     * represent values between -1.0 through +0.99997*/
+    q15_t tanValue;
+    
+    if(q15_abs(sinValue) >= q15_abs(cosValue)){
+        if((sinValue & 0x8000) ^ (cosValue & 0x8000)){
+            tanValue = -32768;
+        }else{
+            tanValue = 32767;
+        }
+    }else{
+        tanValue = q15_div(sinValue, cosValue);
+    }
+    
+    return tanValue;
+}
+
+q15_t q15_fast_tan(q16angle_t theta){
+    q15_t sinValue = q15_fast_sin(theta);
+    q15_t cosValue = q15_fast_cos(theta);
+    
+    /* tan(theta) = sin(theta)/cos(theta) BUT we can only
+     * represent values between -1.0 through +0.99997*/
+    q15_t tanValue;
+    
+    if(q15_abs(sinValue) >= q15_abs(cosValue)){
+        if((sinValue & 0x8000) ^ (cosValue & 0x8000)){
+            tanValue = -32768;
+        }else{
+            tanValue = 32767;
+        }
+    }else{
+        tanValue = q15_div(sinValue, cosValue);
+    }
+    
+    return tanValue;
+}
+
+
