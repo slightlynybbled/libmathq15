@@ -206,6 +206,29 @@ q15_t q15_abs(q15_t num){
     return value;
 }
 
+q15_t q15_sqrt(q15_t num){
+    q15_t value;
+    if(num < 0){
+        value = -1;         // invalid
+    }else{
+        q15_t value = 16384;
+        q15_t increment = 8192;
+        
+        while(increment > 0){
+            q15_t valueSquared = q15_mul(value, value);
+            if(testMultiplication > num){
+                value -= increment;
+            }else{
+                value += increment;
+            }
+            
+            increment = increment >> 1;
+        }
+    }
+    
+    return value;
+}
+
 q15_t q15_sin(q16angle_t theta){
     q15_t value;
     

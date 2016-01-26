@@ -25,6 +25,8 @@ q15_t q15_mul(q15_t multiplicand, q15_t multiplier);
 q15_t q15_div(q15_t dividend, q15_t divisor);
 q15_t q15_add(q15_t addend, q15_t adder);
 q15_t q15_abs(q15_t num);
+q15_t q15_sqrt(q15_t num);
+
 q15_t q15_sin(q16angle_t theta);
 q15_t q15_fast_sin(q16angle_t theta);
 q15_t q15_cos(q16angle_t theta);
@@ -32,13 +34,14 @@ q15_t q15_fast_cos(q16angle_t theta);
 q15_t q15_tan(q16angle_t theta);
 q15_t q15_fast_tan(q16angle_t theta);
 
+
 /* TODO:
 q16angle_t q15_acos(q15_t num);
 q16angle_t q15_asin(q15_t num);
 q16angle_t q15_atan(q15_t num);
 q16angle_t q15_atan2(q15_t num);
 q15_t q15_exp(q16angle_t theta);
-q15_t q15_sqrt(q15_t num);
+
 */
 
 #endif
