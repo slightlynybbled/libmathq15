@@ -11,8 +11,8 @@
 #undef SINE_TABLE_7BIT  // 128-entry table
 #undef SINE_TABLE_8BIT  // 256-entry table
 
-typedef int16_t q15_t
-typedef uint16_t q16angle_t
+typedef int16_t q15_t;
+typedef uint16_t q16angle_t;
 
 double q15_to_dbl(q15_t num);
 float q15_to_float(q15_t num);
