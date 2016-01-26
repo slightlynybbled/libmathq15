@@ -41,7 +41,8 @@ q16angle_t q15_asin(q15_t num);
 q16angle_t q15_atan(q15_t num);
 q16angle_t q15_atan2(q15_t num);
 q15_t q15_exp(q16angle_t theta);
-
+... more? ...
 */
 
 #endif
+
