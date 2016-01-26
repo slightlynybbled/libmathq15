@@ -1,9 +1,6 @@
 #include "q15math.h"
 
 /***************** defines *****************/
-#define NINETY_DEG  16384
-#define ONE_EIGHTY_DEG  32768
-#define TWO_SEVENTY_DEG 49152
 
 /***************** variable declarations *****************/ 
 #if defined(SINE_TABLE_4BIT)
@@ -94,6 +91,10 @@
 
                         
 #endif
+
+const q16angle_t NINETY_DEG = 16384;
+const q16angle_t ONE_EIGHTY_DEG = 32768;
+const q16angle_t TWO_SEVENTY_DEG = 49152;
 
 /***************** local function declarations *****************/ 
 q15_t q15_sin90(q16angle_t theta);
@@ -214,15 +215,15 @@ q15_t q15_sin(q16angle_t theta){
     }else if(theta < ONE_EIGHTY_DEG){
         /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - NINETY_DEG;
-        value = q15_sin90(NINETY_DEG - offset);
+        value = q15_sin90((q16_angle_t)NINETY_DEG - (q16_angle_t)offset);
     }else if(theta < TWO_SEVENTY_DEG){
         /* for 180 through 269.9, negative of the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
-        value = -q15_sin90(offset);
+        value = -q15_sin90((q16_angle_t)offset);
     }else{
         /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - TWO_SEVENTY_DEG;
-        value = -q15_sin90(NINETY_DEG - offset);
+        value = -q15_sin90((q16_angle_t)NINETY_DEG - (q16_angle_t)offset);
     }
     
     return value;
@@ -271,15 +272,15 @@ q15_t q15_fast_sin(q16angle_t theta){
     }else if(theta < ONE_EIGHTY_DEG){
         /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - NINETY_DEG;
-        value = q15_fast_sin90(NINETY_DEG - offset);
+        value = q15_fast_sin90((q16_angle_t)NINETY_DEG - (q16_angle_t)offset);
     }else if(theta < TWO_SEVENTY_DEG){
         /* for 180 through 269.9, negative of the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
-        value = -q15_fast_sin90(offset);
+        value = -q15_fast_sin90((q16_angle_t)offset);
     }else{
         /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - TWO_SEVENTY_DEG;
-        value = -q15_fast_sin90(NINETY_DEG - offset);
+        value = -q15_fast_sin90((q16_angle_t)NINETY_DEG - (q16_angle_t)offset);
     }
     
     return value;
@@ -294,3 +295,18 @@ q15_t q15_fast_sin90(q16angle_t theta){
     tempTheta = theta >> SINE_TABLE_SHIFT;
     return sine_table[tempTheta];
 }
+
+/* by piggybacking off of the sine calculation, the cosine calculation is slightly slower than
+ * it might be if it had its own lookup table but it would take twice memory */
+q15_t q15_cos(q16angle_t theta){
+    q16angle_t tempTheta = theta + (q16angle_t)NINETY_DEG;
+    q15_t value = q15_sin(tempTheta);
+    return value;
+}
+
+q15_t q15_fast_cos(q16angle_t theta){
+    q16angle_t tempTheta = theta + (q16angle_t)NINETY_DEG;
+    q15_t value = q15_fast_sin(tempTheta);
+    return value;
+}
+

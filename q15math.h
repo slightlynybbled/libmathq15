@@ -27,6 +27,8 @@ q15_t q15_add(q15_t addend, q15_t adder);
 q15_t q15_abs(q15_t num);
 q15_t q15_sin(q16angle_t theta);
 q15_t q15_fast_sin(q16angle_t theta);
+q15_t q15_cos(q16angle_t theta);
+q15_t q15_fast_cos(q16angle_t theta);
 
 /* TODO:
 q16angle_t q15_acos(q15_t num);
