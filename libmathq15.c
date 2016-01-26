@@ -281,7 +281,7 @@ q15_t q15_sin90(q16angle_t theta){
 
     /* tempTheta will be very small, so it is appropriate to perform the division */
     q15_t percent = q15_div((q15_t)tempTheta, (q15_t)mask);
-    q15_t offset = q15_mpy(percent, (table_value1 - table_value0));
+    q15_t offset = q15_mul(percent, (table_value1 - table_value0));
 
     // standard addition is 'safe' in this instance b/c these values are guaranteed to be small
     return offset + table_value0;
@@ -313,7 +313,7 @@ q15_t q15_fast_sin(q16angle_t theta){
 /* a helper function for the sin that only works between 0 and 89.99 degrees (0 to 16383)
  *  the fast version only does the lookup and does not interpolate */
 q15_t q15_fast_sin90(q16angle_t theta){
-    q15_t tempTheta, table_value;
+    q15_t tempTheta;
 
     /* look up the 4-bit values surrounding theta and store in table_value0 and table_value1 */
     tempTheta = theta >> SINE_TABLE_SHIFT;
