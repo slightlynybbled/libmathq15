@@ -8,6 +8,7 @@
 #undef SINE_TABLE_4BIT  // 16-entry table
 #undef SINE_TABLE_5BIT  // 32-entry table
 #undef SINE_TABLE_6BIT  // 64-entry table
+#undef SINE_TABLE_7BIT  // 128-entry table
 #undef SINE_TABLE_8BIT  // 256-entry table
 
 typedef int16_t q15_t
