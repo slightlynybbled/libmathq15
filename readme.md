@@ -42,8 +42,15 @@ Functions that still require testing:
 I still need to add test cases for the trigonometric functions.
 
 # Performance #
+
+## Speed Comparisons ##
+
 None of the functions have been tested - nor optimized! - for performance on any platform.  Currently, testing is focused on correctness.  Before optimization on your platform, these libraries will likely not perform much better than normal integer operations on your toolchain and processor.
- 
+
+## Memory Footpring ##
+
+There can be significant memory overhead in some functions - especially trigonometric functions.  Memory overhead can also differ greatly between implementations.  This should be quantified, particularly for devices which have limited memory.
+
 # Future #
  
  I have personally utilized many similar routines in the past, so I plan to continue contributing in the above ways myself.  I just know that I won't be able to do everything right now, so I'm publishing the 'beginning' to the community to help out if they wish.
