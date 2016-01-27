@@ -392,10 +392,6 @@ void test_q15_from_int_n2(){
 
 
 
-
-
-
-
 void test_q15_mul_32767x32767(void)
 
 {
@@ -412,7 +408,7 @@ void test_q15_mul_32767x32767(void)
 
    ((void *)0)
 
-   ), (_U_UINT)174, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)172, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -434,7 +430,7 @@ void test_q15_mul_32767xneg32768(void)
 
    ((void *)0)
 
-   ), (_U_UINT)183, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)181, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -456,7 +452,7 @@ void test_q15_mul_neg32768xneg32768(void)
 
    ((void *)0)
 
-   ), (_U_UINT)192, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)190, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -478,7 +474,7 @@ void test_q15_mul_0x0(void)
 
    ((void *)0)
 
-   ), (_U_UINT)201, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)199, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -500,7 +496,7 @@ void test_q15_mul_16384xneg16384(void)
 
    ((void *)0)
 
-   ), (_U_UINT)210, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)208, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -516,7 +512,7 @@ void test_q15_div_0_0(void){
 
    ((void *)0)
 
-   ), (_U_UINT)216, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)214, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -532,7 +528,7 @@ void test_q15_div_1_0(void){
 
    ((void *)0)
 
-   ), (_U_UINT)222, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)220, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -548,7 +544,7 @@ void test_q15_div_n1_0(void){
 
    ((void *)0)
 
-   ), (_U_UINT)228, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)226, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -564,7 +560,7 @@ void test_q15_div_16384_n32768(void){
 
    ((void *)0)
 
-   ), (_U_UINT)234, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)232, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -580,7 +576,7 @@ void test_q15_div_n16384_32767(void){
 
    ((void *)0)
 
-   ), (_U_UINT)240, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)238, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -592,7 +588,7 @@ void test_q15_add_0_0(void){
 
    ((void *)0)
 
-   ), (_U_UINT)244, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)242, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -604,7 +600,7 @@ void test_q15_add_100_n100(void){
 
    ((void *)0)
 
-   ), (_U_UINT)248, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)246, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -616,7 +612,7 @@ void test_q15_add_32000_1000(void){
 
    ((void *)0)
 
-   ), (_U_UINT)252, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)250, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -628,7 +624,7 @@ void test_q15_add_n32000_n1000(void){
 
    ((void *)0)
 
-   ), (_U_UINT)256, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)254, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -640,7 +636,7 @@ void test_q15_abs_0(void){
 
    ((void *)0)
 
-   ), (_U_UINT)260, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)258, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -652,7 +648,7 @@ void test_q15_abs_16384(void){
 
    ((void *)0)
 
-   ), (_U_UINT)264, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)262, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -664,7 +660,7 @@ void test_q15_abs_n16384(void){
 
    ((void *)0)
 
-   ), (_U_UINT)268, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)266, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -676,7 +672,7 @@ void test_q15_sqrt_8192(void){
 
    ((void *)0)
 
-   ), (_U_UINT)272, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)270, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -690,7 +686,7 @@ void test_q15_sqrt_1000(void){
 
    ((void *)0)
 
-   ), (_U_UINT)277, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)275, UNITY_DISPLAY_STYLE_INT16);
 
 }
 
@@ -704,6 +700,308 @@ void test_q15_sqrt_0(void){
 
    ((void *)0)
 
-   ), (_U_UINT)282, UNITY_DISPLAY_STYLE_INT16);
+   ), (_U_UINT)280, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+void test_q15_sin_0(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((0)), (_U_SINT)(_US16)((q15_sin(0))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)284, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_5161(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((16382)), (_U_SINT)(_US16)((q15_sin(5461))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)290, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_8192(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((23169)), (_U_SINT)(_US16)((q15_sin(8192))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)295, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_10923(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((28376)), (_U_SINT)(_US16)((q15_sin(10923))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)301, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_16383(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((32766)), (_U_SINT)(_US16)((q15_sin(16383))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)307, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_16384(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((32766)), (_U_SINT)(_US16)((q15_sin(16384))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)313, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_16385(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((32766)), (_U_SINT)(_US16)((q15_sin(16385))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)319, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_21845(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((28375)), (_U_SINT)(_US16)((q15_sin(21845))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)325, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_27307(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((16379)), (_U_SINT)(_US16)((q15_sin(27307))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)331, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_32767(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((0)), (_U_SINT)(_US16)((q15_sin(32767))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)336, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_32768(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((0)), (_U_SINT)(_US16)((q15_sin(32768))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)341, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_32769(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-3)), (_U_SINT)(_US16)((q15_sin(32769))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)346, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_38229(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-16382)), (_U_SINT)(_US16)((q15_sin(38229))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)352, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_43691(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-28376)), (_U_SINT)(_US16)((q15_sin(43691))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)358, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_49151(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-32766)), (_U_SINT)(_US16)((q15_sin(49151))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)363, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_49152(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-32766)), (_U_SINT)(_US16)((q15_sin(49152))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)368, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_49153(void){
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-32766)), (_U_SINT)(_US16)((q15_sin(49153))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)373, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_54613(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-28375)), (_U_SINT)(_US16)((q15_sin(54613))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)379, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_60075(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-16379)), (_U_SINT)(_US16)((q15_sin(60075))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)385, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_sin_65535(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((0)), (_U_SINT)(_US16)((q15_sin(65535))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)391, UNITY_DISPLAY_STYLE_INT16);
 
 }

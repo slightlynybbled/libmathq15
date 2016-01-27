@@ -94,70 +94,130 @@
   :line: 162
   :message: ''
 - :test: test_q15_mul_32767x32767
-  :line: 168
+  :line: 166
   :message: ''
 - :test: test_q15_mul_32767xneg32768
-  :line: 177
+  :line: 175
   :message: ''
 - :test: test_q15_mul_neg32768xneg32768
-  :line: 186
+  :line: 184
   :message: ''
 - :test: test_q15_mul_0x0
-  :line: 195
+  :line: 193
   :message: ''
 - :test: test_q15_mul_16384xneg16384
-  :line: 204
+  :line: 202
   :message: ''
 - :test: test_q15_div_0_0
-  :line: 213
+  :line: 211
   :message: ''
 - :test: test_q15_div_1_0
-  :line: 219
+  :line: 217
   :message: ''
 - :test: test_q15_div_n1_0
-  :line: 225
+  :line: 223
   :message: ''
 - :test: test_q15_div_16384_n32768
-  :line: 231
+  :line: 229
   :message: ''
 - :test: test_q15_div_n16384_32767
-  :line: 237
+  :line: 235
   :message: ''
 - :test: test_q15_add_0_0
-  :line: 243
+  :line: 241
   :message: ''
 - :test: test_q15_add_100_n100
-  :line: 247
+  :line: 245
   :message: ''
 - :test: test_q15_add_32000_1000
-  :line: 251
+  :line: 249
   :message: ''
 - :test: test_q15_add_n32000_n1000
-  :line: 255
+  :line: 253
   :message: ''
 - :test: test_q15_abs_0
-  :line: 259
+  :line: 257
   :message: ''
 - :test: test_q15_abs_16384
-  :line: 263
+  :line: 261
   :message: ''
 - :test: test_q15_abs_n16384
-  :line: 267
+  :line: 265
   :message: ''
 - :test: test_q15_sqrt_8192
-  :line: 271
+  :line: 269
   :message: ''
 - :test: test_q15_sqrt_1000
-  :line: 275
+  :line: 273
   :message: ''
 - :test: test_q15_sqrt_0
-  :line: 280
+  :line: 278
+  :message: ''
+- :test: test_q15_sin_0
+  :line: 283
+  :message: ''
+- :test: test_q15_sin_5161
+  :line: 288
+  :message: ''
+- :test: test_q15_sin_8192
+  :line: 294
+  :message: ''
+- :test: test_q15_sin_10923
+  :line: 299
+  :message: ''
+- :test: test_q15_sin_16383
+  :line: 305
+  :message: ''
+- :test: test_q15_sin_16384
+  :line: 311
+  :message: ''
+- :test: test_q15_sin_16385
+  :line: 317
+  :message: ''
+- :test: test_q15_sin_21845
+  :line: 323
+  :message: ''
+- :test: test_q15_sin_27307
+  :line: 329
+  :message: ''
+- :test: test_q15_sin_32767
+  :line: 335
+  :message: ''
+- :test: test_q15_sin_32768
+  :line: 340
+  :message: ''
+- :test: test_q15_sin_32769
+  :line: 345
+  :message: ''
+- :test: test_q15_sin_38229
+  :line: 350
+  :message: ''
+- :test: test_q15_sin_43691
+  :line: 356
+  :message: ''
+- :test: test_q15_sin_49151
+  :line: 362
+  :message: ''
+- :test: test_q15_sin_49152
+  :line: 367
+  :message: ''
+- :test: test_q15_sin_49153
+  :line: 372
+  :message: ''
+- :test: test_q15_sin_54613
+  :line: 377
+  :message: ''
+- :test: test_q15_sin_60075
+  :line: 383
+  :message: ''
+- :test: test_q15_sin_65535
+  :line: 389
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 50
-  :passed: 50
+  :total: 70
+  :passed: 70
   :failed: 0
   :ignored: 0
 :stdout:

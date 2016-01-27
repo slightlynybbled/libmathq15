@@ -7,7 +7,7 @@
     const q15_t sine_table[] = {  0, 3211, 6392, 9511, 12539, 15446, 18204, 20787,
                             23169, 25329, 27244, 28897, 30272, 31356, 32137, 32609};
     const int SINE_TABLE_ENTRIES = 16;
-    const int SINE_TABLE_SHIFT = 12;
+    const int SINE_TABLE_SHIFT = 10;
 
 #elif defined(SINE_TABLE_5BIT)
 
@@ -16,7 +16,7 @@
                             23169, 24278, 25329, 26318, 27244, 28105, 28897, 29621,
                             30272, 30851, 31356, 31785, 32137, 32412, 32609, 32727};
     const int SINE_TABLE_ENTRIES = 32;
-    const int SINE_TABLE_SHIFT = 11;
+    const int SINE_TABLE_SHIFT = 9;
 
 #elif defined(SINE_TABLE_6BIT)
 
@@ -29,7 +29,7 @@
                             30272, 30571, 30851, 31113, 31356, 31580, 31785, 31970,
                             32137, 32284, 32412, 32520, 32609, 32678, 32727, 32757};
     const int SINE_TABLE_ENTRIES = 64;
-    const int SINE_TABLE_SHIFT = 10;
+    const int SINE_TABLE_SHIFT = 8;
 
 #elif defined(SINE_TABLE_7BIT)
 
@@ -50,7 +50,7 @@
                             32137, 32213, 32284, 32350, 32412, 32468, 32520, 32567,
                             32609, 32646, 32678, 32705, 32727, 32744, 32757, 32764};
     const int SINE_TABLE_ENTRIES = 128;
-    const int SINE_TABLE_SHIFT = 9;
+    const int SINE_TABLE_SHIFT = 7;
 
 #else
 
@@ -87,7 +87,7 @@
                             32609, 32628, 32646, 32662, 32678, 32692, 32705, 32717,
                             32727, 32736, 32744, 32751, 32757, 32761, 32764, 32766};
     const int SINE_TABLE_ENTRIES = 256;
-    const int SINE_TABLE_SHIFT = 8;
+    const int SINE_TABLE_SHIFT = 6;
 
 
 #endif
@@ -237,16 +237,16 @@ q15_t q15_sin(q16angle_t theta){
         value = q15_sin90(theta);
     }else if(theta < ONE_EIGHTY_DEG){
         /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
-        uint16_t offset = (uint16_t)theta - NINETY_DEG;
-        value = q15_sin90((q16angle_t)NINETY_DEG - (q16angle_t)offset);
+        uint16_t tempTheta = ONE_EIGHTY_DEG - theta - 1;
+        value = q15_sin90((q16angle_t)tempTheta);
     }else if(theta < TWO_SEVENTY_DEG){
         /* for 180 through 269.9, negative of the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
         value = -q15_sin90((q16angle_t)offset);
     }else{
         /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
-        uint16_t offset = (uint16_t)theta - TWO_SEVENTY_DEG;
-        value = -q15_sin90((q16angle_t)NINETY_DEG - (q16angle_t)offset);
+        uint16_t tempTheta = 0 - theta - 1;
+        value = -q15_sin90((q16angle_t)tempTheta);
     }
 
     return value;
@@ -254,37 +254,37 @@ q15_t q15_sin(q16angle_t theta){
 
 /* a helper function for the sin that only works between 0 and 89.99 degrees (0 to 16383) */
 q15_t q15_sin90(q16angle_t theta){
-    q15_t tempTheta, table_value0, table_value1;
+    uint16_t value;
 
-    /* look up the 4-bit values surrounding theta and store in table_value0 and table_value1 */
-    tempTheta = theta >> SINE_TABLE_SHIFT;
-    table_value0 = sine_table[tempTheta];
+    if(theta < 16384){
+        q15_t tempTheta0, tempTheta1, table_value0, table_value1;
 
-    tempTheta += 1;
+        /* look up the 4-bit values surrounding theta and store in table_value0 and table_value1 */
+        tempTheta0 = theta >> SINE_TABLE_SHIFT;
+        table_value0 = sine_table[tempTheta0];
 
-    if(tempTheta == SINE_TABLE_ENTRIES){
-        table_value1 = 32767;   // 90 degree value
+        tempTheta1 = tempTheta0 + 1;
+
+        if(tempTheta1 == SINE_TABLE_ENTRIES){
+            table_value1 = 32767;   // 90 degree value
+        }else{
+            table_value1 = sine_table[tempTheta1];
+        }
+
+        /* use the mask to get the low-order bits and store in tempTheta*/
+        /* tempTheta will be very small, so it is appropriate to perform the division */
+        q15_t domain = 1 << SINE_TABLE_SHIFT;
+        q15_t range = table_value1 - table_value0;
+        q15_t percent = q15_div(theta - (tempTheta0 << SINE_TABLE_SHIFT), domain);
+        q15_t offset = q15_mul(percent, (table_value1 - table_value0));
+
+        value = offset + table_value0;
     }else{
-        table_value1 = sine_table[tempTheta];
+        value = 32767;
     }
-
-    /* TODO: interpolate between the two values based on the lower bits of theta */
-    uint16_t mask = 0;
-    int i;
-    for(i = 0; i < SINE_TABLE_SHIFT; i++){
-        mask += 1;
-        mask = mask << 1;
-    }
-
-    /* use the mask to get the low-order bits and store in tempTheta*/
-    tempTheta = theta & mask;
-
-    /* tempTheta will be very small, so it is appropriate to perform the division */
-    q15_t percent = q15_div((q15_t)tempTheta, (q15_t)mask);
-    q15_t offset = q15_mul(percent, (table_value1 - table_value0));
 
     // standard addition is 'safe' in this instance b/c these values are guaranteed to be small
-    return offset + table_value0;
+    return value;
 }
 
 q15_t q15_fast_sin(q16angle_t theta){
@@ -295,16 +295,16 @@ q15_t q15_fast_sin(q16angle_t theta){
         value = q15_fast_sin90(theta);
     }else if(theta < ONE_EIGHTY_DEG){
         /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
-        uint16_t offset = (uint16_t)theta - NINETY_DEG;
-        value = q15_fast_sin90((q16angle_t)NINETY_DEG - (q16angle_t)offset);
+        uint16_t tempTheta = ONE_EIGHTY_DEG - theta - 1;
+        value = q15_fast_sin90((q16angle_t)tempTheta);
     }else if(theta < TWO_SEVENTY_DEG){
         /* for 180 through 269.9, negative of the 90 degree calculation */
         uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
         value = -q15_fast_sin90((q16angle_t)offset);
     }else{
         /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
-        uint16_t offset = (uint16_t)theta - TWO_SEVENTY_DEG;
-        value = -q15_fast_sin90((q16angle_t)NINETY_DEG - (q16angle_t)offset);
+        uint16_t tempTheta = 0 - theta - 1;
+        value = -q15_fast_sin90((q16angle_t)tempTheta);
     }
 
     return value;

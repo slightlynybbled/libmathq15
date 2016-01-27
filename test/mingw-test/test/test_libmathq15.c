@@ -279,3 +279,115 @@ void test_q15_sqrt_0(void){
     /* sqrt doesn't work well at low values */
     TEST_ASSERT_EQUAL_INT16(182, q15_sqrt(0));
 }
+
+void test_q15_sin_0(void){
+    TEST_ASSERT_EQUAL_INT16(0, q15_sin(0));
+}
+
+/* 30 deg */
+void test_q15_sin_5161(void){
+    /* default value would be 16384, but this routine is 2 points off in this case */
+    TEST_ASSERT_EQUAL_INT16(16382, q15_sin(5461));
+}
+
+/* 45 deg */
+void test_q15_sin_8192(void){
+    TEST_ASSERT_EQUAL_INT16(23169, q15_sin(8192));
+}
+
+/* 60 deg */
+void test_q15_sin_10923(void){
+    /* default value would be 28377, but this routine is 1 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(28376, q15_sin(10923));
+}
+
+/* 89.99 deg */
+void test_q15_sin_16383(void){
+    /* default value would be 32767, but this routine is 1 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(32766, q15_sin(16383));
+}
+
+/* 90 deg */
+void test_q15_sin_16384(void){
+    /* default value would be 32767, but this routine is 1 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(32766, q15_sin(16384));
+}
+
+/* 90.01 deg */
+void test_q15_sin_16385(void){
+    /* default value would be 32767, but this routine is 1 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(32766, q15_sin(16385));
+}
+
+/* 120 deg */
+void test_q15_sin_21845(void){
+    /* default value would be 28378, but this routine is 3 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(28375, q15_sin(21845));
+}
+
+/* 150 deg */
+void test_q15_sin_27307(void){
+    /* default value would be 16384, but this routine is 5 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(16379, q15_sin(27307));
+}
+
+/* 179.99 deg */
+void test_q15_sin_32767(void){
+    TEST_ASSERT_EQUAL_INT16(0, q15_sin(32767));
+}
+
+/* 180.00 deg */
+void test_q15_sin_32768(void){
+    TEST_ASSERT_EQUAL_INT16(0, q15_sin(32768));
+}
+
+/* 180.01 deg */
+void test_q15_sin_32769(void){
+    TEST_ASSERT_EQUAL_INT16(-3, q15_sin(32769));
+}
+
+/* 210 deg */
+void test_q15_sin_38229(void){
+    /* default value would be 16384, but this routine is 2 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(-16382, q15_sin(38229));
+}
+
+/* 240 deg */
+void test_q15_sin_43691(void){
+    /* default value would be 28378, but this routine is 2 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(-28376, q15_sin(43691));
+}
+
+/* 269.99 deg */
+void test_q15_sin_49151(void){
+    TEST_ASSERT_EQUAL_INT16(-32766, q15_sin(49151));
+}
+
+/* 270.00 deg */
+void test_q15_sin_49152(void){
+    TEST_ASSERT_EQUAL_INT16(-32766, q15_sin(49152));
+}
+
+/* 270.01 deg */
+void test_q15_sin_49153(void){
+    TEST_ASSERT_EQUAL_INT16(-32766, q15_sin(49153));
+}
+
+/* 300 deg */
+void test_q15_sin_54613(void){
+    /* default value would be 28376, but this routine is 1 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(-28375, q15_sin(54613));
+}
+
+/* 330 deg */
+void test_q15_sin_60075(void){
+    /* default value would be -16384, but this routine is 5 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(-16379, q15_sin(60075));
+}
+
+/* 359.99 deg */
+void test_q15_sin_65535(void){
+    /* default value would be 0, but this routine is 5 point off in this case */
+    TEST_ASSERT_EQUAL_INT16(0, q15_sin(65535));
+}
+
