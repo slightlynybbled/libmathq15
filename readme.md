@@ -4,18 +4,18 @@ There are a number of math libraries that support Q16.16 and some other fixed-po
 
 # Contributions #
 
- * provide optimizations for your favorite embedded platform
- * testing (there has been no testing so far, I just wrote the lib and there are sure to be bugs)
- * expansion - add your favorite or most-used function
- * documentation - there are some comments, but not much
+ * optimizations - provide optimizations for your favorite embedded platform
+ * testing - some testing has been completed for correctness, but not all
+ * expansion - adding functionality to the library
+ * documentation - there are some comments within the source code, but not much
  
-## Testing ##
+# Testing #
 
  I am utilizing ceedling with unity for test testing.  I have included all tests and test configuration under '/test/mingw-test/'.
  
  I have setup the project.yml file so that the paths are relative.  To use this test file, you will have to have ruby installed and added to your environment variables/paths.  You will also need some form of gcc and to have the environment variable/paths set up for that as well.
  
-# Test Cases #
+## Test Case Status ##
 
 I have added - and completed test cases for the following functions:
  * double q15_to_dbl(q15_t num);
