@@ -169,7 +169,7 @@ q15_t q15_div(q15_t dividend, q15_t divisor){
 
 	/* check to ensure dividend is smaller in magnitude
      * than the divisor */
-	if(q15_abs(divisor) > q15_abs(dividend)){
+	if((q15_abs(divisor) < q15_abs(dividend)) || (divisor == 0)){
 		/* saturation: if signs are different,
          * then saturate negative */
 		if((divisor & 0x8000) ^ (dividend & 0x8000)){
@@ -177,10 +177,10 @@ q15_t q15_div(q15_t dividend, q15_t divisor){
 		}else{
 			quotient = 32767;
 		}
-	}else{
+    }else{
 		/* this is where you should insert the specific
          * division instruction for this processor – if present */
-		quotient = dividend/divisor;
+		quotient = 32768 * dividend/divisor;
 	}
 
 	return quotient;
@@ -211,7 +211,7 @@ q15_t q15_sqrt(q15_t num){
     if(num < 0){
         value = -1;         // invalid
     }else{
-        q15_t value = 16384;
+        value = 16383;
         q15_t increment = 8192;
 
         while(increment > 0){

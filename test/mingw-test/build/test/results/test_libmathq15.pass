@@ -3,14 +3,71 @@
   :path: test
   :file: test_libmathq15.c
 :successes:
-- :test: test_q15_mul
+- :test: test_q15_mul_32767x32767
   :line: 47
+  :message: ''
+- :test: test_q15_mul_32767xneg32768
+  :line: 56
+  :message: ''
+- :test: test_q15_mul_neg32768xneg32768
+  :line: 65
+  :message: ''
+- :test: test_q15_mul_0x0
+  :line: 74
+  :message: ''
+- :test: test_q15_mul_16384xneg16384
+  :line: 83
+  :message: ''
+- :test: test_q15_div_0_0
+  :line: 92
+  :message: ''
+- :test: test_q15_div_1_0
+  :line: 98
+  :message: ''
+- :test: test_q15_div_n1_0
+  :line: 104
+  :message: ''
+- :test: test_q15_div_16384_n32768
+  :line: 110
+  :message: ''
+- :test: test_q15_div_n16384_32767
+  :line: 116
+  :message: ''
+- :test: test_q15_add_0_0
+  :line: 122
+  :message: ''
+- :test: test_q15_add_100_n100
+  :line: 126
+  :message: ''
+- :test: test_q15_add_32000_1000
+  :line: 130
+  :message: ''
+- :test: test_q15_add_n32000_n1000
+  :line: 134
+  :message: ''
+- :test: test_q15_abs_0
+  :line: 138
+  :message: ''
+- :test: test_q15_abs_16384
+  :line: 142
+  :message: ''
+- :test: test_q15_abs_n16384
+  :line: 146
+  :message: ''
+- :test: test_q15_sqrt_8192
+  :line: 150
+  :message: ''
+- :test: test_q15_sqrt_1000
+  :line: 154
+  :message: ''
+- :test: test_q15_sqrt_0
+  :line: 159
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 20
+  :passed: 20
   :failed: 0
   :ignored: 0
 :stdout:

@@ -30,7 +30,26 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_q15_mul(void);
+extern void test_q15_mul_32767x32767(void);
+extern void test_q15_mul_32767xneg32768(void);
+extern void test_q15_mul_neg32768xneg32768(void);
+extern void test_q15_mul_0x0(void);
+extern void test_q15_mul_16384xneg16384(void);
+extern void test_q15_div_0_0(void);
+extern void test_q15_div_1_0(void);
+extern void test_q15_div_n1_0(void);
+extern void test_q15_div_16384_n32768(void);
+extern void test_q15_div_n16384_32767(void);
+extern void test_q15_add_0_0(void);
+extern void test_q15_add_100_n100(void);
+extern void test_q15_add_32000_1000(void);
+extern void test_q15_add_n32000_n1000(void);
+extern void test_q15_abs_0(void);
+extern void test_q15_abs_16384(void);
+extern void test_q15_abs_n16384(void);
+extern void test_q15_sqrt_8192(void);
+extern void test_q15_sqrt_1000(void);
+extern void test_q15_sqrt_0(void);
 
 
 //=======Test Reset Option=====
@@ -46,7 +65,26 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_libmathq15.c");
-  RUN_TEST(test_q15_mul, 47);
+  RUN_TEST(test_q15_mul_32767x32767, 47);
+  RUN_TEST(test_q15_mul_32767xneg32768, 56);
+  RUN_TEST(test_q15_mul_neg32768xneg32768, 65);
+  RUN_TEST(test_q15_mul_0x0, 74);
+  RUN_TEST(test_q15_mul_16384xneg16384, 83);
+  RUN_TEST(test_q15_div_0_0, 92);
+  RUN_TEST(test_q15_div_1_0, 98);
+  RUN_TEST(test_q15_div_n1_0, 104);
+  RUN_TEST(test_q15_div_16384_n32768, 110);
+  RUN_TEST(test_q15_div_n16384_32767, 116);
+  RUN_TEST(test_q15_add_0_0, 122);
+  RUN_TEST(test_q15_add_100_n100, 126);
+  RUN_TEST(test_q15_add_32000_1000, 130);
+  RUN_TEST(test_q15_add_n32000_n1000, 134);
+  RUN_TEST(test_q15_abs_0, 138);
+  RUN_TEST(test_q15_abs_16384, 142);
+  RUN_TEST(test_q15_abs_n16384, 146);
+  RUN_TEST(test_q15_sqrt_8192, 150);
+  RUN_TEST(test_q15_sqrt_1000, 154);
+  RUN_TEST(test_q15_sqrt_0, 159);
 
   return (UnityEnd());
 }
