@@ -9,6 +9,23 @@ There are a number of math libraries that support Q16.16 and some other fixed-po
  * expansion - add your favorite or most-used function
  * documentation - there are some comments, but not much
  
+## Testing ##
+
+ I am utilizing ceedling with unity for test testing.  I have included all tests and test configuration under '/test/mingw-test/'.
+ 
+ I have setup the project.yml file so that the paths are relative.  To use this test file, you will have to have ruby installed and added to your environment variables/paths.  You will also need some form of gcc and to have the environment variable/paths set up for that as well.
+ 
+# Test Cases #
+
+I have added - and completed test cases for the following functions:
+ * q15_t q15_mul(q15_t multiplicand, q15_t multiplier);
+ * q15_t q15_div(q15_t dividend, q15_t divisor);
+ * q15_t q15_add(q15_t addend, q15_t adder);
+ * q15_t q15_abs(q15_t num);
+ * q15_t q15_sqrt(q15_t num);
+ 
+I still need to add test cases for the trigonometric functions.
+ 
 # Future #
  
  I have personally utilized many similar routines in the past, so I plan to continue contributing in the above ways myself.  I just know that I won't be able to do everything right now, so I'm publishing the 'beginning' to the community to help out if they wish.
