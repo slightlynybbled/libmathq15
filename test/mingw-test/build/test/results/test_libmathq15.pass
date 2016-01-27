@@ -1,0 +1,17 @@
+---
+:source:
+  :path: test
+  :file: test_libmathq15.c
+:successes:
+- :test: test_first
+  :line: 47
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 1
+  :failed: 0
+  :ignored: 0
+:stdout:
+- ''
