@@ -18,13 +18,31 @@ There are a number of math libraries that support Q16.16 and some other fixed-po
 # Test Cases #
 
 I have added - and completed test cases for the following functions:
+ * double q15_to_dbl(q15_t num);
+ * float q15_to_float(q15_t num);
+ * int16_t q15_to_int(q15_t num);
+ * q15_t q15_from_dbl(double num);
+ * q15_t q15_from_float(float num);
+ * q15_t q15_from_int(int num);
+ 
  * q15_t q15_mul(q15_t multiplicand, q15_t multiplier);
  * q15_t q15_div(q15_t dividend, q15_t divisor);
  * q15_t q15_add(q15_t addend, q15_t adder);
  * q15_t q15_abs(q15_t num);
  * q15_t q15_sqrt(q15_t num);
  
+Functions that still require testing:
+ * q15_t q15_sin(q16angle_t theta);
+ * q15_t q15_fast_sin(q16angle_t theta);
+ * q15_t q15_cos(q16angle_t theta);
+ * q15_t q15_fast_cos(q16angle_t theta);
+ * q15_t q15_tan(q16angle_t theta);
+ * q15_t q15_fast_tan(q16angle_t theta);
+ 
 I still need to add test cases for the trigonometric functions.
+
+# Performance #
+None of the functions have been tested - nor optimized! - for performance on any platform.  Currently, testing is focused on correctness.  Before optimization on your platform, these libraries will likely not perform much better than normal integer operations on your toolchain and processor.
  
 # Future #
  
