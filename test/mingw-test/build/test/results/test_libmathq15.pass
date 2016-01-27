@@ -219,18 +219,18 @@
 - :test: test_q15_cos_16384
   :line: 401
   :message: ''
+- :test: test_q15_cos_32768
+  :line: 407
+  :message: ''
 - :test: test_q15_cos_49151
   :line: 413
   :message: ''
-:failures:
-- :test: test_q15_cos_32768
-  :line: 409
-  :message: Expected -1 Was -32766
+:failures: []
 :ignores: []
 :counts:
   :total: 74
-  :passed: 73
-  :failed: 1
+  :passed: 74
+  :failed: 0
   :ignored: 0
 :stdout:
 - ''

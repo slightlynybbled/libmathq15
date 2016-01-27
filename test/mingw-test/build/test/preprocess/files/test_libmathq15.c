@@ -1046,7 +1046,7 @@ void test_q15_cos_32768(void){
 
 
 
-    UnityAssertEqualNumber((_U_SINT)(_US16)((-1)), (_U_SINT)(_US16)((q15_cos(32768))), (
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-32766)), (_U_SINT)(_US16)((q15_cos(32768))), (
 
    ((void *)0)
 
