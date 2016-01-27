@@ -100,6 +100,10 @@ extern void test_q15_sin_49153(void);
 extern void test_q15_sin_54613(void);
 extern void test_q15_sin_60075(void);
 extern void test_q15_sin_65535(void);
+extern void test_q15_cos_0(void);
+extern void test_q15_cos_16384(void);
+extern void test_q15_cos_32768(void);
+extern void test_q15_cos_49151(void);
 
 
 //=======Test Reset Option=====
@@ -185,6 +189,10 @@ int main(void)
   RUN_TEST(test_q15_sin_54613, 377);
   RUN_TEST(test_q15_sin_60075, 383);
   RUN_TEST(test_q15_sin_65535, 389);
+  RUN_TEST(test_q15_cos_0, 395);
+  RUN_TEST(test_q15_cos_16384, 401);
+  RUN_TEST(test_q15_cos_32768, 407);
+  RUN_TEST(test_q15_cos_49151, 413);
 
   return (UnityEnd());
 }

@@ -1005,3 +1005,67 @@ void test_q15_sin_65535(void){
    ), (_U_UINT)391, UNITY_DISPLAY_STYLE_INT16);
 
 }
+
+
+
+
+
+void test_q15_cos_0(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((32766)), (_U_SINT)(_US16)((q15_cos(0))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)397, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_cos_16384(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((0)), (_U_SINT)(_US16)((q15_cos(16384))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)403, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_cos_32768(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((-1)), (_U_SINT)(_US16)((q15_cos(32768))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)409, UNITY_DISPLAY_STYLE_INT16);
+
+}
+
+
+
+
+
+void test_q15_cos_49151(void){
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((0)), (_U_SINT)(_US16)((q15_cos(49151))), (
+
+   ((void *)0)
+
+   ), (_U_UINT)415, UNITY_DISPLAY_STYLE_INT16);
+
+}
