@@ -44,7 +44,11 @@ void tearDown(void)
  *    TESTS
  ******************************************************************************/
  
-void test_first(void)
+void test_q15_mul(void)
 {
-    TEST_ASSERT_EQUAL_INT(1,1);
+    q15_t multiplier = 32767;
+    q15_t multiplicand = 32767;
+    q15_t result = q15_mul(multiplier, multiplicand);
+    
+    TEST_ASSERT_EQUAL_INT16(32766, result);
 }

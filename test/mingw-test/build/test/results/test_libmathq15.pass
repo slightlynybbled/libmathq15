@@ -3,7 +3,7 @@
   :path: test
   :file: test_libmathq15.c
 :successes:
-- :test: test_first
+- :test: test_q15_mul
   :line: 47
   :message: ''
 :failures: []

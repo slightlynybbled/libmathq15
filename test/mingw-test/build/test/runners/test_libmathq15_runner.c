@@ -30,7 +30,7 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_first(void);
+extern void test_q15_mul(void);
 
 
 //=======Test Reset Option=====
@@ -46,7 +46,7 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_libmathq15.c");
-  RUN_TEST(test_first, 47);
+  RUN_TEST(test_q15_mul, 47);
 
   return (UnityEnd());
 }

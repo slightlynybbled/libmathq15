@@ -34,14 +34,22 @@ void tearDown(void)
 
 
 
-void test_first(void)
+void test_q15_mul(void)
 
 {
 
-    UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((1)), (
+    q15_t multiplier = 32767;
+
+    q15_t multiplicand = 32767;
+
+    q15_t result = q15_mul(multiplier, multiplicand);
+
+
+
+    UnityAssertEqualNumber((_U_SINT)(_US16)((32766)), (_U_SINT)(_US16)((result)), (
 
    ((void *)0)
 
-   ), (_U_UINT)49, UNITY_DISPLAY_STYLE_INT);
+   ), (_U_UINT)53, UNITY_DISPLAY_STYLE_INT16);
 
 }

@@ -160,7 +160,7 @@ q15_t q15_from_int(int num){
 }
 
 q15_t q15_mul(q15_t multiplicand, q15_t multiplier){
-    uint32_t product = ((uint32_t)multiplicand * (uint32_t)multiplier) >> 16;
+    uint32_t product = ((uint32_t)multiplicand * (uint32_t)multiplier) >> 15;
     return (q15_t)product;
 }
 
