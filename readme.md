@@ -46,7 +46,19 @@ I still need to add test cases for the trigonometric functions.
 
 ## Speed Comparisons ##
 
-None of the functions have been tested - nor optimized! - for performance on any platform.  Currently, testing is focused on correctness.  Before optimization on your platform, these libraries will likely not perform much better than normal integer operations on your toolchain and processor.
+None of the functions have been tested - nor optimized! - for performance on any platform.  Currently, testing is focused on correctness.  Before optimization on your platform, these libraries will likely not perform any better than normal integer operations on your toolchain and processor.
+
+## Accuracy ##
+
+Using the <math.h> double as the standard, the accuracy of the sine function is +/-5 'ticks' over the entire range using the 8-bit table.
+
+### Standard Sine ###
+
+| Table Width              | 8-bit   | 7-bit   | 6-bit   | 5-bit   | 4-bit   |
+|--------------------------|---------|---------|---------|---------|---------|
+| Ticks                    | 5       | 5       | 6       | 12      | 41      |
+| Percent                  | 0.0076% | 0.0076% | 0.0091% | 0.0183% | 0.0626% |
+| Memory Footprint (Bytes) | 512     | 256     | 128     | 64      | 32      |
 
 ## Memory Footprint ##
 
