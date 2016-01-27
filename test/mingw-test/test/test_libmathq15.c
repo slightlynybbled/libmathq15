@@ -43,7 +43,126 @@ void tearDown(void)
 /*******************************************************************************
  *    TESTS
  ******************************************************************************/
- 
+void test_q15_to_dbl_0(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, 0, q15_to_dbl(0));
+}
+
+void test_q15_to_dbl_16384(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, 0.5, q15_to_dbl(16384));
+}
+
+void test_q15_to_dbl_n16384(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, -0.5, q15_to_dbl(-16384));
+}
+
+void test_q15_to_dbl_32767(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, 1.0, q15_to_dbl(32767));
+}
+
+void test_q15_to_dbl_n32768(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, -1.0, q15_to_dbl(-32768));
+}
+
+void test_q15_to_float_0(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, 0, q15_to_float(0));
+}
+
+void test_q15_to_float_16384(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, 0.5, q15_to_float(16384));
+}
+
+void test_q15_to_float_n16384(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, -0.5, q15_to_float(-16384));
+}
+
+void test_q15_to_float_32767(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, 1.0, q15_to_float(32767));
+}
+
+void test_q15_to_float_n32768(void){
+    TEST_ASSERT_FLOAT_WITHIN(0.000031, -1.0, q15_to_float(-32768));
+}
+
+void test_q15_to_int_0(void){
+    TEST_ASSERT_EQUAL_INT16(0, q15_to_int(0));
+}
+
+void test_q15_to_int_16383(void){
+    TEST_ASSERT_EQUAL_INT16(0, q15_to_int(16383));
+}
+
+void test_q15_to_int_16384(void){
+    TEST_ASSERT_EQUAL_INT16(1, q15_to_int(16384));
+}
+
+void test_q15_to_int_n16383(void){
+    TEST_ASSERT_EQUAL_INT16(0, q15_to_int(-16383));
+}
+
+void test_q15_to_int_n16384(void){
+    TEST_ASSERT_EQUAL_INT16(-1, q15_to_int(-16384));
+}
+
+void test_q15_from_dbl_0(){
+    TEST_ASSERT_EQUAL_INT16(0, q15_from_dbl(0));
+}
+
+void test_q15_from_dbl_0500(){
+    TEST_ASSERT_EQUAL_INT16(16384, q15_from_dbl(0.5));
+}
+
+void test_q15_from_dbl_1000(){
+    TEST_ASSERT_EQUAL_INT16(32767, q15_from_dbl(1.0));
+}
+
+void test_q15_from_dbl_n0500(){
+    TEST_ASSERT_EQUAL_INT16(-16384, q15_from_dbl(-0.5));
+}
+
+void test_q15_from_dbl_n1000(){
+    TEST_ASSERT_EQUAL_INT16(-32768, q15_from_dbl(-1.0));
+}
+
+void test_q15_from_float_0(){
+    TEST_ASSERT_EQUAL_INT16(0, q15_from_float(0));
+}
+
+void test_q15_from_float_0500(){
+    TEST_ASSERT_EQUAL_INT16(16384, q15_from_float(0.5));
+}
+
+void test_q15_from_float_1000(){
+    TEST_ASSERT_EQUAL_INT16(32767, q15_from_float(1.0));
+}
+
+void test_q15_from_float_n0500(){
+    TEST_ASSERT_EQUAL_INT16(-16384, q15_from_float(-0.5));
+}
+
+void test_q15_from_float_n1000(){
+    TEST_ASSERT_EQUAL_INT16(-32768, q15_from_float(-1.0));
+}
+
+void test_q15_from_int_0(){
+    TEST_ASSERT_EQUAL_INT16(0, q15_from_int(0));
+}
+
+void test_q15_from_int_1(){
+    TEST_ASSERT_EQUAL_INT16(32767, q15_from_int(1));
+}
+
+void test_q15_from_int_2(){
+    TEST_ASSERT_EQUAL_INT16(32767, q15_from_int(2));
+}
+
+void test_q15_from_int_n1(){
+    TEST_ASSERT_EQUAL_INT16(-32768, q15_from_int(-1));
+}
+
+void test_q15_from_int_n2(){
+    TEST_ASSERT_EQUAL_INT16(-32768, q15_from_int(-2.0));
+}
+
 void test_q15_mul_32767x32767(void)
 {
     q15_t multiplier = 32767;
