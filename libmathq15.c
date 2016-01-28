@@ -274,7 +274,6 @@ q15_t q15_sin90(q16angle_t theta){
         /* use the mask to get the low-order bits and store in tempTheta*/
         /* tempTheta will be very small, so it is appropriate to perform the division */
         q15_t domain = 1 << SINE_TABLE_SHIFT;
-        q15_t range = table_value1 - table_value0;
         q15_t percent = q15_div(theta - (tempTheta0 << SINE_TABLE_SHIFT), domain);
         q15_t offset = q15_mul(percent, (table_value1 - table_value0));
 
