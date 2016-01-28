@@ -1,0 +1,3 @@
+### Test for Correctness ###
+
+Correctness - above speed and size - is the metric above all else.  The tests located in this directory are intended to test the code for correctness.  It would be desired to run correctness testing on the target using a simulator or debugger.  In that case, this directory would contain test data for each target.  For now, the test data pertains to gcc on an x86/x64 platform.
