@@ -22,7 +22,7 @@ int main(){
     f = fopen("sqrt.csv", "w");
 
     /* create a file header */
-    fprintf(f, "number,sqrt(),q15_sqrt(),error");
+    fprintf(f, "number,sqrt(),q15_sqrt(),error\n");
 
     q16angle_t i;
     for(i = 0; i < 32767; i++){
@@ -47,7 +47,7 @@ int main(){
     f = fopen("sin.csv", "w");
 
     /* create a file header */
-    fprintf(f, "angle,sin(),q15_sin(),error");
+    fprintf(f, "angle,sin(),q15_sin(),error\n");
 
     for(i = 0; i < 65535; i++){
         double dAngle;
