@@ -160,7 +160,15 @@ q15_t q15_from_int(int num){
 }
 
 q15_t q15_mul(q15_t multiplicand, q15_t multiplier){
-    uint32_t product = ((uint32_t)multiplicand * (uint32_t)multiplier) >> 15;
+#if defined(__XC16) || defined(XC16)
+    /* XC16-specific implementation.  It would be faster to use the accumulator
+     * in DSP chips, but user interrupt code may use the accumulator is no 
+     * context saving for accumulators */
+    int32_t product = __builtin_mulss(multiplicand, multiplier) >> 15;
+#else
+    int32_t product = ((int32_t)multiplicand * (int32_t)multiplier) >> 15;
+#endif
+    
     return (q15_t)product;
 }
 
@@ -178,9 +186,14 @@ q15_t q15_div(q15_t dividend, q15_t divisor){
 			quotient = 32767;
 		}
     }else{
-		/* this is where you should insert the specific
-         * division instruction for this processor – if present */
-		quotient = 32768 * dividend/divisor;
+#if defined(__XC16) || defined(XC16)
+        /* using the XC16 builtin commands - this is not the most efficient
+         * method on this processor!  A more efficient method is to use the
+         * DSP directly, but this is faster than the 'default' method */
+        quotient = __builtin_divsd(((int32_t)dividend << 15), divisor);
+#else
+        quotient = 32768 * dividend/divisor;
+#endif
 	}
 
 	return quotient;
