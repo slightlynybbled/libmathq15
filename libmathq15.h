@@ -5,11 +5,11 @@
 
 /* define the desired trigonometric resolution (higher bit values create larger tables)
  * note that, if all are undefined, the default will be the 8-bit table */
-#undef SINE_TABLE_4BIT  // 16-entry table
-#undef SINE_TABLE_5BIT  // 32-entry table
-#undef SINE_TABLE_6BIT  // 64-entry table
-#undef SINE_TABLE_7BIT  // 128-entry table
-#undef SINE_TABLE_8BIT  // 256-entry table
+#undef SINE_TABLE_4BIT
+#undef SINE_TABLE_5BIT
+#undef SINE_TABLE_6BIT
+#undef SINE_TABLE_7BIT
+#undef SINE_TABLE_8BIT
 
 typedef int16_t q15_t;
 typedef uint16_t q16angle_t;

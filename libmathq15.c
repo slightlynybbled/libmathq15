@@ -100,6 +100,13 @@ const q16angle_t TWO_SEVENTY_DEG = 49152;
 q15_t q15_sin90(q16angle_t theta);
 q15_t q15_fast_sin90(q16angle_t theta);
 
+#if (defined(__XC16) || defined(XC16))
+extern q15_t q15_mul_xc16(q15_t multiplicand, q15_t multiplier);
+extern q15_t q15_div_xc16(q15_t dividend, q15_t divisor);
+extern q15_t q15_add_xc16(q15_t addend, q15_t adder);
+extern q15_t q15_abs_xc16(q15_t num);
+#endif
+
 /***************** function implementations *****************/
 double q15_to_dbl(q15_t num){
     return ((double)num)/((double)32768.0);
@@ -160,19 +167,18 @@ q15_t q15_from_int(int num){
 }
 
 q15_t q15_mul(q15_t multiplicand, q15_t multiplier){
-#if defined(__XC16) || defined(XC16)
-    /* XC16-specific implementation.  It would be faster to use the accumulator
-     * in DSP chips, but user interrupt code may use the accumulator is no 
-     * context saving for accumulators */
-    int32_t product = __builtin_mulss(multiplicand, multiplier) >> 15;
+#if (defined(__XC16) || defined(XC16))
+    return q15_mul_xc16(multiplicand, multiplier);
 #else
     int32_t product = ((int32_t)multiplicand * (int32_t)multiplier) >> 15;
-#endif
-    
     return (q15_t)product;
+#endif
 }
 
 q15_t q15_div(q15_t dividend, q15_t divisor){
+#if defined(__XC16) || defined(XC16)
+    return q15_div_xc16(dividend, divisor);
+#else
     q15_t quotient;
 
 	/* check to ensure dividend is smaller in magnitude
@@ -186,29 +192,30 @@ q15_t q15_div(q15_t dividend, q15_t divisor){
 			quotient = 32767;
 		}
     }else{
-#if defined(__XC16) || defined(XC16)
-        /* using the XC16 builtin commands - this is not the most efficient
-         * method on this processor!  A more efficient method is to use the
-         * DSP directly, but this is faster than the 'default' method */
-        quotient = __builtin_divsd(((int32_t)dividend << 15), divisor);
-#else
         quotient = 32768 * dividend/divisor;
-#endif
 	}
 
 	return quotient;
+#endif
 }
 
 q15_t q15_add(q15_t addend, q15_t adder){
+#if defined(__XC16) || defined(XC16)
+    return q15_add_xc16(addend, adder);
+#else
     int32_t result = (uint32_t)addend + (uint32_t)adder;
 
     if(result > 32767)          result = 32767;
     else if(result < -32768)    result = -32768;
 
     return (q15_t)result;
+#endif
 }
 
 q15_t q15_abs(q15_t num){
+#if (defined(__XC16) || defined(XC16))
+    return q15_abs_xc16(num);
+#else
     q15_t value = num;
 
     if(value < 0){
@@ -217,6 +224,7 @@ q15_t q15_abs(q15_t num){
     }
 
     return value;
+#endif
 }
 
 q15_t q15_sqrt(q15_t num){
