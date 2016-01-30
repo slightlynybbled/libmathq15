@@ -11,9 +11,11 @@ There are a number of math libraries that support Q16.16 and some other fixed-po
  
 # Testing #
 
- I am utilizing ceedling with unity for test testing.  I have included all tests and test configuration under '/test/mingw-test/'.
+ I am utilizing ceedling with unity for testing basic correctness of the code.  I have included all tests and test configuration under '/test/mingw-test/'.
  
  I have setup the project.yml file so that the paths are relative.  To use this test file, you will have to have ruby installed and added to your environment variables/paths.  You will also need some form of gcc and to have the environment variable/paths set up for that as well.
+ 
+ It would be great to have the correctness test cases automated on the target simulator or target processor, and I may get to this at some point in the future.  If you are so inclined, the source it here!
  
 ## Test Case Status ##
 
@@ -44,39 +46,7 @@ I still need to add test cases for the trigonometric functions.
 
 # Performance #
 
-## Speed Comparisons ##
-
-None of the functions have been tested - nor optimized! - for performance on any platform.  Currently, testing is focused on correctness.  Before optimization on your platform, these libraries will likely not perform any better than normal integer operations on your toolchain and processor.
-
-## Accuracy ##
-
-Using the <math.h> double as the standard, the accuracy of some functions is tested below.
-
-### Standard Sine ###
-
-The standard sine function is useable down to 4 bits.
-
-| Table Width                   | 8-bit   | 7-bit   | 6-bit   | 5-bit   | 4-bit   |
-|-------------------------------|---------|---------|---------|---------|---------|
-| Ticks error (worst case)      | 5       | 5       | 6       | 12      | 41      |
-| Percent vs. range             | 0.0076% | 0.0076% | 0.0091% | 0.0183% | 0.0626% |
-| Memory Footprint - LUT(Bytes) | 512     | 256     | 128     | 64      | 32      |
-
-### Fast Sine ###
-
-The fast sine function has significantly more error, but doesn't involve interpolation.  A comparison of the <math.h> sine and the 4-bit fast sine can be found in '\accuracy\mingw\results\'.
-
-| Table Width                   | 8-bit   | 7-bit   | 6-bit   | 5-bit   | 4-bit   |
-|-------------------------------|---------|---------|---------|---------|---------|
-| Ticks error (worst case)      | 201     | 402     | 804     | 1607    | 3211    |
-| Percent vs. range             | 0.613%  | 1.23%   | 2.45%   | 4.90%   | 9.80%   |
-| Memory Footprint - LUT(Bytes) | 512     | 256     | 128     | 64      | 32      |
-
-### Square Root ###
-
-The q15_sqrt() function is very accurate with input numbers ranging from 32767 (0.99997) down to about 100 (0.00305).  If the user will require square roots below this threshold value, then the user should probably use floating point methods or methods with higher resolutions.
-
-The error of the q15_sqrt() function is non-linear and is characterized in '/accuracy/mingw/results/'.  The worst error is at an input of 0 and returns a value of 182 (0.00556) rather than 0.
+## Look at the readme within each metric (speed/accuracy/test) for performance metrics.  If you don't see a metric, feel free to run it and send your results!
 
 ## Memory Footprint ##
 
@@ -84,7 +54,15 @@ There can be significant memory overhead in some functions - especially trigonom
 
 # Future #
  
-I have personally utilized many similar routines in the past, so I plan to continue contributing in the above ways myself.  I just know that I won't be able to do everything right now, so I'm publishing the 'beginning' to the community to help out if they wish.
+I would like to see assembly-optimized code for the major functions (multiplication/division/addition) on:
+
+ * Microchip 16-bit devices (PIC24 and dsPIC33)
+ * Microchip 8-bit devices (PIC18 and PIC16)
+ * TI MSP430 devices
+ * STM32 Devices
+ * AVR/Arduino 8-bit Devices
+ 
+I have programmed all of these devices to some degree, but I have only written assembly on a couple of them, so some help is needed!
 
 # Library Details #
 
