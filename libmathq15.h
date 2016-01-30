@@ -1,6 +1,10 @@
 #ifndef _Q15_MATH
 #define _Q15_MATH
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 /* define the desired trigonometric resolution (higher bit values create larger tables)
@@ -43,6 +47,10 @@ q16angle_t q15_atan2(q15_t num);
 q15_t q15_exp(q16angle_t theta);
 ... more? ...
 */
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 
