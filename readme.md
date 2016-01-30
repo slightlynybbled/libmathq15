@@ -12,7 +12,7 @@ There are a number of math libraries that support Q16.16 and some other fixed-po
  
 # Performance #
 
-## Look at the readme within each metric (speed/accuracy/test) for performance metrics.  If you don't see a metric, feel free to run it and send your results!
+Look at the readme within each metric (speed/accuracy/test) for performance metrics.  If you don't see a metric, feel free to run it and send your results!
 
 ## Memory Footprint ##
 
