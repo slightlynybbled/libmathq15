@@ -2,6 +2,12 @@
 
 There are a number of math libraries that support Q16.16 and some other fixed-point notations, but I have noted a distinct lack of open-source libraries for Q1.15.  In most applications, Q1.15 math will work well enough to get the job done and there should be an easy-to-use, open source, and optimized library for it.
 
+My reasons for wanting to create this repository:
+ 1. Every chip maker already has their own implementation which is different from everyone else.
+ 2. Compiler libraries can change with a different version of compiler.  This library will generate new '.a' files requiring more testing, which may not actually be necessary.
+ 3. Beginners can easily include these files without having to resort to loading library files - which can be challenging for a beginner.
+ 4. To share some knowledge and have fun!
+
 # Contributions #
 
  * optimizations - provide optimizations for your favorite embedded platform
