@@ -15,6 +15,6 @@ My apologies for mixing standards (micro-seconds above, cycles here), but I know
 
 |                | float      | q15_t     |
 |----------------|------------|-----------|
-| Multiplication | 156 cycles | 36 cycles |
-| Division       | 494 cycles | 99 cycles |
-| Addition       | 184cycles  | 34 cycles |
+| Multiplication | 156 cycles | 12 cycles |
+| Division       | 494 cycles | 59 cycles |
+| Addition       | 184cycles  | 13 cycles |

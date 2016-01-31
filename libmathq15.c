@@ -100,13 +100,6 @@ const q16angle_t TWO_SEVENTY_DEG = 49152;
 q15_t q15_sin90(q16angle_t theta);
 q15_t q15_fast_sin90(q16angle_t theta);
 
-#if (defined(__XC16) || defined(XC16))
-extern q15_t q15_mul_xc16(q15_t multiplicand, q15_t multiplier);
-extern q15_t q15_div_xc16(q15_t dividend, q15_t divisor);
-extern q15_t q15_add_xc16(q15_t addend, q15_t adder);
-extern q15_t q15_abs_xc16(q15_t num);
-#endif
-
 /***************** function implementations *****************/
 double q15_to_dbl(q15_t num){
     return ((double)num)/((double)32768.0);
@@ -166,19 +159,15 @@ q15_t q15_from_int(int num){
     return value;
 }
 
+#if (!defined(__XC16) && !defined(XC16))
 q15_t q15_mul(q15_t multiplicand, q15_t multiplier){
-#if (defined(__XC16) || defined(XC16))
-    return q15_mul_xc16(multiplicand, multiplier);
-#else
     int32_t product = ((int32_t)multiplicand * (int32_t)multiplier) >> 15;
     return (q15_t)product;
-#endif
 }
+#endif
 
+#if !defined(__XC16) && !defined(XC16)
 q15_t q15_div(q15_t dividend, q15_t divisor){
-#if defined(__XC16) || defined(XC16)
-    return q15_div_xc16(dividend, divisor);
-#else
     q15_t quotient;
 
 	/* check to ensure dividend is smaller in magnitude
@@ -196,26 +185,22 @@ q15_t q15_div(q15_t dividend, q15_t divisor){
 	}
 
 	return quotient;
-#endif
 }
+#endif
 
+#if !defined(__XC16) && !defined(XC16)
 q15_t q15_add(q15_t addend, q15_t adder){
-#if defined(__XC16) || defined(XC16)
-    return q15_add_xc16(addend, adder);
-#else
     int32_t result = (uint32_t)addend + (uint32_t)adder;
 
     if(result > 32767)          result = 32767;
     else if(result < -32768)    result = -32768;
 
     return (q15_t)result;
-#endif
 }
+#endif
 
+#if (!defined(__XC16) && !defined(XC16))
 q15_t q15_abs(q15_t num){
-#if (defined(__XC16) || defined(XC16))
-    return q15_abs_xc16(num);
-#else
     q15_t value = num;
 
     if(value < 0){
@@ -224,8 +209,8 @@ q15_t q15_abs(q15_t num){
     }
 
     return value;
-#endif
 }
+#endif
 
 q15_t q15_sqrt(q15_t num){
     q15_t value;

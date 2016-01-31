@@ -1,12 +1,12 @@
     .include "xc.inc"
 
     .text
-    .global _q15_mul_xc16
-    .global _q15_div_xc16
-    .global _q15_add_xc16
-    .global _q15_abs_xc16
+    .global _q15_mul
+    .global _q15_div
+    .global _q15_add
+    .global _q15_abs
     
-_q15_mul_xc16:
+_q15_mul:
     ; w3:w2 = w1 * w0
     mul.ss  w0, w1, w2
     
@@ -19,19 +19,19 @@ _q15_mul_xc16:
     
     return
     
-_q15_div_xc16:
+_q15_div:
     ; w2 = w0
     ; w3 = w1
     mov	    w0, w2
     mov	    w1, w3
     
     ; w4 = abs(w0)
-    call    _q15_abs_xc16
+    call    _q15_abs
     mov	    w0, w4
     
     ; w5 = abs(w1)
     mov	    w3, w0
-    call    _q15_abs_xc16
+    call    _q15_abs
     mov	    w0, w5
     
     ; if w4 >= w5, then goto saturate
@@ -87,7 +87,7 @@ _q15_div_div:
     
     return
     
-_q15_add_xc16:
+_q15_add:
     add	    w0, w1, w2
     btsc    SR, #2	; check the overflow bit
     goto    _q15_add_sat
@@ -109,7 +109,7 @@ _q15_add_neg_sat:
     mov	    #32768, w0
     return
     
-_q15_abs_xc16:
+_q15_abs:
     btss    w0, #15
     return
     
