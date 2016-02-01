@@ -1,5 +1,7 @@
 # Q1.15 Library for 8- and 16-bit Embedded Applications #
 
+For a good look at how Q-math operations work, head over to  http://www.forembed.com/how-fixed-point-math-works/ and drop a line!
+
 There are a number of math libraries that support Q16.16 and some other fixed-point notations, but I have noted a distinct lack of open-source libraries for Q1.15.  In most applications, Q1.15 math will work well enough to get the job done and there should be an easy-to-use, open source, and optimized library for it.
 
 My reasons for wanting to create this repository:
