@@ -55,7 +55,7 @@ There are two type definitions that the user must be aware of:
 
 The 'q15_t' type is a 16-bit, signed number that represents decimal values ranging from -1.0 to +0.9997.  Actual values are -32768 to +32767.  The C compiler will allow the user to simply add two q15_t numbers together, but it is always recommended to use the q15_add() function to keep the number from rolling over.
 
-The 'q16angle_t' type is a 16-bit, unsigned number that represents an angle between 0 degrees and 359.99 degrees (0 radians to 6.283 radians).  Angles can be added or subtracted at will and do not saturate.  For instance, 359 degrees + 1 result in 0 degrees and 655535 + 1 results in 0.  The rollover model is the same.
+The 'q16angle_t' type is a 16-bit, unsigned number that represents an angle between 0 degrees and 359.99 degrees (0 radians to 6.283 radians).  Angles can be added or subtracted at will and do not saturate.  For instance, 359 degrees + 1 result in 0 degrees and 65535 + 1 results in 0.  The rollover model is the same.
 
 ## Conversion Functions ##
 
