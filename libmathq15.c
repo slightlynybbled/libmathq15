@@ -218,7 +218,9 @@ q15_t q15_add(q15_t addend, q15_t adder){
 }
 #endif
 
-#if (!defined(__XC16) && !defined(XC16))
+#if (!defined(__XC16) \
+		&& !defined(XC16) \
+		&& !defined(__MSP430__))
 q15_t q15_abs(q15_t num){
     q15_t value = num;
 

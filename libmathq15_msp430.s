@@ -26,6 +26,7 @@
 	.text						; locates code in 'text' section
 	
 	.global q15_add
+	.global q15_abs
 	
 q15_add:
 	; if bit 15 is set, then jump to add_neg
@@ -66,8 +67,15 @@ q15_add_neg_neg_sat:
 	ret
 	
 	
+q15_abs:
+	bit.w	#32768, r12
+	jc		q15_abs_negate
+	ret
 	
-	
+q15_abs_negate:
+	inv.w	r12
+	inc.w	r12
+	ret
 	
 	.end
 	
