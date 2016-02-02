@@ -205,7 +205,9 @@ q15_t q15_div(q15_t dividend, q15_t divisor){
 }
 #endif
 
-#if !defined(__XC16) && !defined(XC16)
+#if (	!defined(__XC16) \
+		&& !defined(XC16) \
+		&& !defined(__MSP430__))
 q15_t q15_add(q15_t addend, q15_t adder){
     int32_t result = (uint32_t)addend + (uint32_t)adder;
 

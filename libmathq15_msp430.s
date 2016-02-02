@@ -25,43 +25,43 @@
 	
 	.text						; locates code in 'text' section
 	
-	.global add					; declares 'add' as global
+	.global q15_add
 	
-add:							; this is the function itself
+q15_add:
 	; if bit 15 is set, then jump to add_neg
 	bit.w	#32768, r12
-	jc		add_neg
+	jc		q15_add_neg
 	
-add_pos:
+q15_add_pos:
 	bit.w	#32768, r13
-	jc		add_pos_neg
+	jc		q15_add_pos_neg
 	
-add_pos_pos:					; this label isn't declared global, so it is only available locally
+q15_add_pos_pos:
 	add.w	r13, r12
-	jn		add_pos_pos_sat
+	jn		q15_add_pos_pos_sat
 	ret
 
-add_neg:
+q15_add_neg:
 	bit.w	#32768, r13
-	jc		add_neg_neg
+	jc		q15_add_neg_neg
 	
-add_pos_neg:
+q15_add_pos_neg:
 	add.w	r13, r12
 	ret
 	
-add_pos_pos_sat:
+q15_add_pos_pos_sat:
 	mov		#32767, r12
 	ret
 	
-add_neg_neg:
+q15_add_neg_neg:
 	add.w	r13, r12	
 	
 	; result should be negative
 	bit.w	#32768, r12
-	jnc		add_neg_neg_sat
+	jnc		q15_add_neg_neg_sat
 	ret
 	
-add_neg_neg_sat:
+q15_add_neg_neg_sat:
 	mov		#32768, r12
 	ret
 	
