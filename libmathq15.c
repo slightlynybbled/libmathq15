@@ -176,7 +176,9 @@ q15_t q15_from_int(int num){
     return value;
 }
 
-#if (!defined(__XC16) && !defined(XC16))
+#if (	!defined(__XC16) \
+		&& !defined(XC16) \
+		&& !defined(__MSP430__))
 q15_t q15_mul(q15_t multiplicand, q15_t multiplier){
     int32_t product = ((int32_t)multiplicand * (int32_t)multiplier) >> 15;
     return (q15_t)product;
