@@ -134,6 +134,11 @@ _q15_abs:
     com	    w0, w1
     inc	    w1, w0
     
+    ; the number '-32768' can be incorrectly translated,
+    ;	so this must be checked
+    btsc    w0, #15
+    dec	    w0, w0
+    
     return
     
 

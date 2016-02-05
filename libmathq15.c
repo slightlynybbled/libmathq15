@@ -311,7 +311,6 @@ q15_t q15_sin90(q16angle_t theta){
         value = 32767;
     }
 
-    // standard addition is 'safe' in this instance b/c these values are guaranteed to be small
     return value;
 }
 
