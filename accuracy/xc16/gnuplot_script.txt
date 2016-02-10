@@ -10,7 +10,7 @@ plot "mul_24576.csv" using 2:6 with dots title "Multiply by 24576 Error in bits"
 
 # make mul fixed-point overlaid w/ floating point
 set output "mul_24576_overlay.png"
-plot "mul_24576.csv" using 2:4 with lines title "Fixed-Point q15_mul(x, 24576)" ,\
+plot "mul_24576.csv" using 2:4 with lines title "Fixed-Point q15 mul(x, 24576)" ,\
 "mul_24576.csv" using 2:5 with lines title "Floating-Point * .75, (scaled by 32768)"
 
 
@@ -22,28 +22,53 @@ plot "mul_n1024.csv" using 2:6 with dots title "Multiply by -1024 Error in bits"
 
 # make mul fixed-point overlaid w/ floating point
 set output "mul_n1024_overlay.png"
-plot "mul_n1024.csv" using 2:4 with lines title "Fixed-Point q15_mul(x, -1024)" ,\
+plot "mul_n1024.csv" using 2:4 with lines title "Fixed-Point q15 mul(x, -1024)" ,\
 "mul_n1024.csv" using 2:5 with lines title "Floating-Point * 0.03125 (scaled by 32768)"
+
+
 
 #---------------- q15_div -1024 ----------------#
 # make div error plot
+set yrange [-1000:1000]
+set xrange [-2048:2048]
 set output "div_n1024_error.png"
 plot "div_n1024.csv" using 2:6 with dots title "Division of -1024 Error in bits"
+set xrange [*:*]
 
 # make div fixed-point overlaid w/ floating point
+set yrange [-40000:40000]
+set xrange [-2048:2048]
 set output "div_n1024_overlay.png"
-plot "div_n1024.csv" using 2:4 with lines title "Fixed-Point q15_div(-1024, x)" ,\
-"div_n1024.csv" using 2:5 with lines title "Floating-Point 1024 / x (scaled by 32768)"
+plot "div_n1024.csv" using 2:4 with dots title "Fixed-Point q15 div(-1024, x)" ,\
+"div_n1024.csv" using 2:5 with dots title "Floating-Point -1024 / x (scaled by 32768)"
+set xrange [*:*]
+set yrange [*:*]
 
+
+#---------------- q15_div 24576 ----------------#
+# make div error plot
+set yrange [-1000:1000]
+set output "div_24576_error.png"
+plot "div_24576.csv" using 2:6 with dots title "Division of 24576 Error in bits"
+set xrange [*:*]
+
+# make div fixed-point overlaid w/ floating point
+set yrange [-40000:40000]
+set xrange [-40000:40000]
+set output "div_24576_overlay.png"
+plot "div_24576.csv" using 2:4 with dots title "Fixed-Point q15 div(-1024, x)" ,\
+"div_24576.csv" using 2:5 with dots title "Floating-Point 24576 / x (scaled by 32768)"
+set xrange [*:*]
+set yrange [*:*]
 
 
 #---------------- q15_sin ----------------#
 # make sine error plot
 set output "sine_8bit_error.png"
-plot "sine_8bit.csv" using 2:6 with dots title "Fixed point (q15_sin) Error in bits"
+plot "sine_8bit.csv" using 2:6 with dots title "Fixed point (q15 sin) Error in bits"
 
 # make sine fixed-point overlaid w/ floating point
 set output "sine_8bit_overlay.png"
-plot "sine_8bit.csv" using 2:4 with lines title "Fixed-Point q15_sin()" ,\
+plot "sine_8bit.csv" using 2:4 with lines title "Fixed-Point q15 sin()" ,\
 "sine_8bit.csv" using 2:5 with lines title "Floating-Point Floating point sin() (scaled by 32768)"
 
