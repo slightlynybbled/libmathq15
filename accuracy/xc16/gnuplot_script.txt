@@ -123,3 +123,13 @@ set output "sine_8bit_overlay.png"
 plot "sine_8bit.csv" using 2:4 with lines title "Fixed-Point q15 sin()" ,\
 "sine_8bit.csv" using 2:5 with lines title "Floating-Point Floating point sin() (scaled by 32768)"
 
+#---------------- q15_cos ----------------#
+# make cosine error plot
+set output "cos_8bit_error.png"
+plot "cos_8bit.csv" using 2:6 with dots title "Fixed point (q15 cos) Error in bits"
+
+# make sine fixed-point overlaid w/ floating point
+set output "cos_8bit_overlay.png"
+plot "cos_8bit.csv" using 2:4 with lines title "Fixed-Point q15 cos()" ,\
+"cos_8bit.csv" using 2:5 with lines title "Floating-Point Floating point cos() (scaled by 32768)"
+
