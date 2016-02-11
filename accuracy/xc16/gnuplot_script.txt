@@ -87,20 +87,30 @@ plot "add_24576.csv" using 2:4 with lines title "Fixed-Point q15 add(x, 24576)" 
 
 
 #---------------- q15_sqrt ----------------#
-# make add error plot
+# make sqrt error plot
 set xrange [0:100]
 set output "sqrt_error_0to100.png"
 plot "sqrt.csv" using 2:6 with points title "q15 sqrt Error in bits"
 
 set xrange [101:*]
-set output "sqrt_error_11up.png"
+set output "sqrt_error_101up.png"
 plot "sqrt.csv" using 2:6 with dots title "q15 sqrt Error in bits"
 set xrange [*:*]
 
-# make add fixed-point overlaid w/ floating point
+# make sqrt fixed-point overlaid w/ floating point
 set output "sqrt_overlay.png"
 plot "sqrt.csv" using 2:4 with lines title "Fixed-Point q15 sqrt(x)" ,\
 "sqrt.csv" using 2:5 with lines title "Floating-Point sqrt(x) (scaled by 32768)"
+
+
+#---------------- q15_abs ----------------#
+set output "abs_error.png"
+plot "abs.csv" using 2:6 with points title "q15 abs Error in bits"
+
+# make abs fixed-point overlaid w/ floating point
+set output "abs_overlay.png"
+plot "abs.csv" using 2:4 with lines title "Fixed-Point q15 abs(x)" ,\
+"abs.csv" using 2:5 with lines title "Floating-Point abs(x) (scaled by 32768)"
 
 
 #---------------- q15_sin ----------------#
