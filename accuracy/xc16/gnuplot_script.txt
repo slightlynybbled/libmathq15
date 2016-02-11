@@ -121,6 +121,22 @@ set output "sine_8bit_overlay.png"
 plot "sine_8bit.csv" using 2:4 with lines title "Fixed-Point q15 sin()" ,\
 "sine_8bit.csv" using 2:5 with lines title "Floating-Point Floating point sin() (scaled by 32768)"
 
+#---------------- q15_fast_sin ----------------#
+# make sine error plot
+set output "fast_sine_8bit_error.png"
+plot "fast_sine_8bit.csv" using 2:6 with dots title "Fixed point (q15 fast sin) Error in bits"
+
+# create a close-up of the error
+set xrange [0:16384]
+set output "fast_sine_8bit_to16384_error.png"
+plot "fast_sine_8bit.csv" using 2:6 with dots title "Fixed point (q15 fast sin) Error in bits"
+set xrange [*:*]
+
+# make sine fixed-point overlaid w/ floating point
+set output "fast_sine_8bit_overlay.png"
+plot "fast_sine_8bit.csv" using 2:4 with lines title "Fixed-Point q15 fast sin()" ,\
+"fast_sine_8bit.csv" using 2:5 with lines title "Floating-Point Floating point sin() (scaled by 32768)"
+
 
 #---------------- q15_cos ----------------#
 # make cosine error plot
@@ -145,3 +161,4 @@ set output "tan_8bit_overlay.png"
 plot "tan_8bit.csv" using 2:4 with lines title "Fixed-Point q15 tan()" ,\
 "tan_8bit.csv" using 2:5 with lines title "Floating-Point Floating point tan() (scaled by 32768)"
 set yrange [*:*]
+
