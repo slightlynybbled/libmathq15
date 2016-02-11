@@ -3,6 +3,8 @@ set term png
 set datafile sep ','
 
 
+
+
 #---------------- q15_mul 24576 ----------------#
 # make mul error plot
 set output "mul_24576_error.png"
@@ -14,7 +16,6 @@ plot "mul_24576.csv" using 2:4 with lines title "Fixed-Point q15 mul(x, 24576)" 
 "mul_24576.csv" using 2:5 with lines title "Floating-Point * .75, (scaled by 32768)"
 
 
-
 #---------------- q15_mul -1024 ----------------#
 # make mul error plot
 set output "mul_n1024_error.png"
@@ -24,7 +25,6 @@ plot "mul_n1024.csv" using 2:6 with dots title "Multiply by -1024 Error in bits"
 set output "mul_n1024_overlay.png"
 plot "mul_n1024.csv" using 2:4 with lines title "Fixed-Point q15 mul(x, -1024)" ,\
 "mul_n1024.csv" using 2:5 with lines title "Floating-Point * 0.03125 (scaled by 32768)"
-
 
 
 #---------------- q15_div -1024 ----------------#
@@ -62,7 +62,6 @@ set xrange [*:*]
 set yrange [*:*]
 
 
-
 #---------------- q15_add -1024 ----------------#
 # make add error plot
 set output "add_n1024_error.png"
@@ -72,7 +71,6 @@ plot "add_n1024.csv" using 2:6 with dots title "Add to -1024 Error in bits"
 set output "add_n1024_overlay.png"
 plot "add_n1024.csv" using 2:4 with lines title "Fixed-Point q15 add(x, -1024)" ,\
 "add_n1024.csv" using 2:5 with lines title "Floating-Point + .03124 (scaled by 32768)"
-
 
 
 #---------------- q15_add 24576 ----------------#
@@ -123,6 +121,7 @@ set output "sine_8bit_overlay.png"
 plot "sine_8bit.csv" using 2:4 with lines title "Fixed-Point q15 sin()" ,\
 "sine_8bit.csv" using 2:5 with lines title "Floating-Point Floating point sin() (scaled by 32768)"
 
+
 #---------------- q15_cos ----------------#
 # make cosine error plot
 set output "cos_8bit_error.png"
@@ -133,3 +132,16 @@ set output "cos_8bit_overlay.png"
 plot "cos_8bit.csv" using 2:4 with lines title "Fixed-Point q15 cos()" ,\
 "cos_8bit.csv" using 2:5 with lines title "Floating-Point Floating point cos() (scaled by 32768)"
 
+#---------------- q15_tan ----------------#
+# make tangent error plot
+set yrange [-20:20]
+set output "tan_8bit_error.png"
+plot "tan_8bit.csv" using 2:6 with dots title "Fixed point (q15 tan) Error in bits"
+
+
+# make sine fixed-point overlaid w/ floating point
+set yrange [-40000:40000]
+set output "tan_8bit_overlay.png"
+plot "tan_8bit.csv" using 2:4 with lines title "Fixed-Point q15 tan()" ,\
+"tan_8bit.csv" using 2:5 with lines title "Floating-Point Floating point tan() (scaled by 32768)"
+set yrange [*:*]
