@@ -18,19 +18,15 @@ My reasons for wanting to create this repository:
  * documentation - there are some comments within the source code, but not much
  * examples - any reasonably small examples would be appreciated
  
-# Performance #
+# Metrics #
 
-Look at the readme within each metric (speed/accuracy/test) for performance metrics.  If you don't see a metric, feel free to run it and send your results!
-
-## Memory Footprint ##
-
-There can be significant memory overhead in some functions - especially trigonometric functions.  Memory overhead can also differ greatly between implementations.  This should be quantified, particularly for devices which have limited memory.
-
+Function accuracy, speed, and test data are gathered on each platform that has a port.  See the appropriate directory.
+ 
 # Future #
  
 I would like to see assembly-optimized code for the major functions (multiplication/division/addition) on:
 
- * Microchip 16-bit devices (PIC24 and dsPIC33)
+ * ~~Microchip 16-bit devices (PIC24 and dsPIC33)~~ completed
  * Microchip 8-bit devices (PIC18 and PIC16)
  * TI MSP430 devices
  * STM32 Devices
@@ -84,5 +80,5 @@ The 'q16angle_t' type is a 16-bit, unsigned number that represents an angle betw
  * q15_t q15_tan(q16angle_t theta) - Returns the tangent of the angle in q15 format.   Note that this function uses a lookup table (see 'defines') and interpolation.  Note also that the return type is q15_t, which will saturate at values which are less than -1.0 (-32768) or greater than 0.9997 (+32767).  If you require a higher range, then you should probably use a method that offers that range.
  * q15_t q15_fast_tan(q16angle_t theta) - Returns the cosine of the angle in q15 format.  This function uses a lookup table only, but is faster than the standard implementation.
  
- 
+Note about trigonometric functions - There is a list of undefined defines at the top of 'libmathq15.h' that determines the length of the table used for trigonometric functions.  The default is 8-bit, but the user may specify a smaller value at compile time in order to reduce memory usage.  Accuracy will suffer somewhat as well.
  
