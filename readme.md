@@ -4,11 +4,14 @@ For a good look at how Q-math operations work, head over to  http://www.forembed
 
 There are a number of math libraries that support Q16.16 and some other fixed-point notations, but I have noted a distinct lack of open-source libraries for Q1.15.  In most applications, Q1.15 math will work well enough to get the job done and there should be an easy-to-use, open source, and optimized library for it.
 
+This library is currently fully tested on the Microchip PIC24 and dsPIC33 series of microcontrollers using optimized code.  See http://www.forembed.com/testing-the-accuracy-of-libmathq15-on-the-pic24/ for details.
+
 My reasons for wanting to create this repository:
  1. Every chip maker already has their own implementation which is different from everyone else.
  2. Compiler libraries can change with a different version of compiler.  This library will generate new '.a' files requiring more testing, which may not actually be necessary.
  3. Beginners can easily include these files without having to resort to loading library files - which can be challenging for a beginner.
- 4. To share some knowledge and have fun!
+ 4. To share some knowledge
+ 5. Have fun!
 
 # Contributions #
 
@@ -24,7 +27,7 @@ Function accuracy, speed, and test data are gathered on each platform that has a
  
 # Future #
  
-I would like to see assembly-optimized code for the major functions (multiplication/division/addition) on:
+I would like to see assembly-optimized code AND full accuracy and test data for each function (multiplication/division/addition) on:
 
  * ~~Microchip 16-bit devices (PIC24 and dsPIC33)~~ completed
  * Microchip 8-bit devices (PIC18 and PIC16)
