@@ -62,6 +62,47 @@ set xrange [*:*]
 set yrange [*:*]
 
 
+
+#---------------- q15_add -1024 ----------------#
+# make add error plot
+set output "add_n1024_error.png"
+plot "add_n1024.csv" using 2:6 with dots title "Add to -1024 Error in bits"
+
+# make add fixed-point overlaid w/ floating point
+set output "add_n1024_overlay.png"
+plot "add_n1024.csv" using 2:4 with lines title "Fixed-Point q15 add(x, -1024)" ,\
+"add_n1024.csv" using 2:5 with lines title "Floating-Point + .03124 (scaled by 32768)"
+
+
+
+#---------------- q15_add 24576 ----------------#
+# make add error plot
+set output "add_24576_error.png"
+plot "add_24576.csv" using 2:6 with dots title "Add to 24576 Error in bits"
+
+# make add fixed-point overlaid w/ floating point
+set output "add_24576_overlay.png"
+plot "add_24576.csv" using 2:4 with lines title "Fixed-Point q15 add(x, 24576)" ,\
+"add_24576.csv" using 2:5 with lines title "Floating-Point + 0.75 (scaled by 32768)"
+
+
+#---------------- q15_sqrt ----------------#
+# make add error plot
+set xrange [0:100]
+set output "sqrt_error_0to100.png"
+plot "sqrt.csv" using 2:6 with points title "q15 sqrt Error in bits"
+
+set xrange [101:*]
+set output "sqrt_error_11up.png"
+plot "sqrt.csv" using 2:6 with dots title "q15 sqrt Error in bits"
+set xrange [*:*]
+
+# make add fixed-point overlaid w/ floating point
+set output "sqrt_overlay.png"
+plot "sqrt.csv" using 2:4 with lines title "Fixed-Point q15 sqrt(x)" ,\
+"sqrt.csv" using 2:5 with lines title "Floating-Point sqrt(x) (scaled by 32768)"
+
+
 #---------------- q15_sin ----------------#
 # make sine error plot
 set output "sine_8bit_error.png"
