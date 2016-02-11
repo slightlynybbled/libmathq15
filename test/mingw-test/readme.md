@@ -1,7 +1,5 @@
 # Testing #
 
-Correctness - above speed and size - is the metric above all else.  The tests located in this directory are intended to test the code for correctness.  It would be desired to run correctness testing on the target using a simulator or debugger.  In that case, this directory would contain test data for each target.  For now, the test data pertains to gcc on an x86/x64 platform.
-
 I am utilizing ceedling with unity for testing basic correctness of the code.  I have included all tests and test configuration under '/test/mingw-test/'.
  
 I have setup the project.yml file so that the paths are relative.  To use this test file, you will have to have ruby installed and added to your environment variables/paths.  You will also need some form of gcc and to have the environment variable/paths set up for that as well.
