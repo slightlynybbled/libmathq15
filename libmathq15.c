@@ -261,21 +261,25 @@ q15_t q15_sqrt(q15_t num){
 q15_t q15_sin(q16angle_t theta){
     q15_t value;
 
-    if(theta < NINETY_DEG){
-        /* for the first 89.9 deg, use the sin90 function directly  */
-        value = q15_sin90(theta);
-    }else if(theta < ONE_EIGHTY_DEG){
-        /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
-        uint16_t tempTheta = ONE_EIGHTY_DEG - theta - 1;
-        value = q15_sin90((q16angle_t)tempTheta);
-    }else if(theta < TWO_SEVENTY_DEG){
-        /* for 180 through 269.9, negative of the 90 degree calculation */
-        uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
-        value = -q15_sin90((q16angle_t)offset);
+    if(theta < ONE_EIGHTY_DEG){
+        if(theta < NINETY_DEG){
+            /* for the first 89.9 deg, use the sin90 function directly  */
+            value = q15_sin90(theta);
+        }else{
+            /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
+            uint16_t tempTheta = ONE_EIGHTY_DEG - theta - 1;
+            value = q15_sin90((q16angle_t)tempTheta);
+        }
     }else{
-        /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
-        uint16_t tempTheta = 0 - theta - 1;
-        value = -q15_sin90((q16angle_t)tempTheta);
+        if(theta < TWO_SEVENTY_DEG){
+            /* for 180 through 269.9, negative of the 90 degree calculation */
+            uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
+            value = -q15_sin90((q16angle_t)offset);
+        }else{
+            /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
+            uint16_t tempTheta = 0 - theta - 1;
+            value = -q15_sin90((q16angle_t)tempTheta);
+        }
     }
 
     return value;
@@ -317,21 +321,25 @@ q15_t q15_sin90(q16angle_t theta){
 q15_t q15_fast_sin(q16angle_t theta){
     q15_t value;
 
-    if(theta < NINETY_DEG){
-        /* for the first 89.9 deg, use the sin90 function directly  */
-        value = q15_fast_sin90(theta);
-    }else if(theta < ONE_EIGHTY_DEG){
-        /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
-        uint16_t tempTheta = ONE_EIGHTY_DEG - theta - 1;
-        value = q15_fast_sin90((q16angle_t)tempTheta);
-    }else if(theta < TWO_SEVENTY_DEG){
-        /* for 180 through 269.9, negative of the 90 degree calculation */
-        uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
-        value = -q15_fast_sin90((q16angle_t)offset);
+    if(theta < ONE_EIGHTY_DEG){
+        if(theta < NINETY_DEG){
+            /* for the first 89.9 deg, use the sin90 function directly  */
+            value = q15_fast_sin90(theta);
+        }else{
+            /* for 90 deg through 179.99, 'mirror' the 90 degree calculation */
+            uint16_t tempTheta = ONE_EIGHTY_DEG - theta - 1;
+            value = q15_fast_sin90((q16angle_t)tempTheta);
+        }
     }else{
-        /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
-        uint16_t tempTheta = 0 - theta - 1;
-        value = -q15_fast_sin90((q16angle_t)tempTheta);
+        if(theta < TWO_SEVENTY_DEG){
+            /* for 180 through 269.9, negative of the 90 degree calculation */
+            uint16_t offset = (uint16_t)theta - ONE_EIGHTY_DEG;
+            value = -q15_fast_sin90((q16angle_t)offset);
+        }else{
+            /* for 270 through 65535.9, negative of the mirror of the 90 degree calculation */
+            uint16_t tempTheta = 0 - theta - 1;
+            value = -q15_fast_sin90((q16angle_t)tempTheta);
+        }
     }
 
     return value;
