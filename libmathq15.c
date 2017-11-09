@@ -396,4 +396,51 @@ q15_t q15_fast_tan(q16angle_t theta){
     return tanValue;
 }
 
+/**
+ Primary implementation taken from https://geekshavefeelings.com/posts/fixed-point-atan2
 
+ Modified to take advantage of normal absolute values instead of negative absolute values,
+ replaced calculated constants with exact values to reduce load and ensure proper compilation
+ on simple compilers.
+ */
+uint16_t q15_atan2(int16_t sine, int16_t cosine){
+    int16_t abs_y, abs_x;
+
+    if (cosine == sine) { // x/y or y/x would return -1 since 1 isn't representable
+        if (sine > 0) { // 1/8
+            return 8192;
+        } else if (sine < 0) { // 5/8
+            return 40960;
+        } else { // x = y = 0
+            return 0;
+        }
+    }
+
+    abs_y = q15_abs(sine);
+    abs_x = q15_abs(cosine);
+
+    if (abs_x > abs_y) {    // octants 1, 4, 5, 8
+        int16_t y_over_x = q15_div(sine, cosine);
+
+        int16_t correction = q15_mul(2847, q15_abs(y_over_x));
+        int16_t unrotated = q15_mul(11039 - correction, y_over_x);
+
+        if (cosine > 0) {   // octants 1, 8
+            return unrotated;
+        } else {            // octants 4, 5
+            return 32768 + unrotated;
+        }
+
+    } else {                // octants 2, 3, 6, 7
+        int16_t x_over_y = q15_div(cosine, sine);
+
+        int16_t correction = q15_mul(2847, q15_abs(x_over_y));
+        int16_t unrotated = q15_mul(11039 - correction, x_over_y);
+
+        if (sine > 0) {     // octants 2, 3
+            return 16384 - unrotated;
+        } else {            // octants 6, 7
+            return 49152 - unrotated;
+        }
+    }
+}
