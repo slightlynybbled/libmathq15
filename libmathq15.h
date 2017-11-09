@@ -7,6 +7,9 @@ extern "C" {
 
 #include <stdint.h>
 
+#define Q15_MAX (32767)
+#define Q15_MIN (-32768)
+
 /* define the desired trigonometric resolution (higher bit values create larger tables)
  * note that, if all are undefined, the default will be the 8-bit table */
 #undef SINE_TABLE_4BIT
